@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Genspil
 {// hvad bruger vi conditionPrice til ??
 
-    internal class GameGroup
+    internal class Gamegroup
     {
         public string title;
         public int[] numbPlayers = new int[2]; // idx 0 = fra antal spillere, idx 1 = til antal spillere
@@ -17,9 +17,19 @@ namespace Genspil
         public float conditionPrice; 
         public Game[] games = new Game[100]; // maks 100 spil
         
-        public GameGroup(string title)
+        public Gamegroup(string title)
         {
             this.title = title;
+        }
+
+        public void PrintGamegroup()
+        {
+
+            foreach (Game game in games)
+            {
+                if (game != null);
+                    Console.WriteLine($"\tReferencenummer: \"{game.referenceNumber}\"");
+            }
         }
     }
 }
