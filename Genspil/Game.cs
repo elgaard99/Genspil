@@ -8,5 +8,9 @@ namespace Genspil
 {
     internal class Game
     {
+        public string referenceNumber;
+
+        public Game(string referenceNumber)
+        { this.referenceNumber = referenceNumber; }
     }
 }

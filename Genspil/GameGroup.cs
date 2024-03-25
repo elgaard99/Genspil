@@ -5,8 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Genspil
-{
+{// hvad bruger vi conditionPrice til ??
+
     internal class GameGroup
     {
+        public string title;
+        public int[] numbPlayers = new int[2]; // idx 0 = fra antal spillere, idx 1 = til antal spillere
+        public int[] ageRecommended = new int[2]; // idx 0 = fra år, idx 1 = til år
+        public string[] categories = new string[5]; // maks 5 kategorier
+        public float price;
+        public float conditionPrice; 
+        public Game[] games = new Game[100]; // maks 100 spil
+        
+        public GameGroup(string title)
+        {
+            this.title = title;
+        }
     }
 }
