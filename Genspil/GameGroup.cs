@@ -24,7 +24,7 @@ namespace Genspil
         int[] ageRecommended = new int [2];
         public void AddGameToGameGroup(int ID, string referenceNumber)
         {
-            //Kunne ikke finde ud af hvordan metoden Create Game skulle kaldes her så skrev den bare ind
+            //Kunne ikke finde ud af hvordan metoden Create Game skulle kaldes her så skrev den bare ind herunder
             Game newGame = new Game();
             newGame.CreateReferenceNumber(title, condition);
             // vi kan ikke genbruge den "oprindlige" array af objekter , da vi ikke kan ændre længden på en array. Så derfor laver jeg en midlertidig arra der er 1 indeks længere end originalen og gemmer objektet i den sidste
