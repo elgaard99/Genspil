@@ -4,7 +4,8 @@
     {
         static void Main(string[] args)
         {
-            string[] games = new string[] { "Matador", "Kalaha", "Ludo" };
+            //laver en ny array der er en længere
+            /*string[] games = new string[] { "Matador", "Kalaha", "Ludo" };
             foreach(string game in games) {
                 Console.WriteLine(game);
             }
@@ -17,8 +18,9 @@
             foreach (string game in games)
             {
                 Console.WriteLine(game);
-            }
-            //tring[] games = new string[] { "Matador", "Kalaha", "Ludo" };
+            }*/
+
+
             Console.WriteLine("Hello, World!");
             Console.ReadKey();
         }
