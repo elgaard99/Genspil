@@ -27,7 +27,7 @@ namespace Genspil
 
             foreach (Game game in games)
             {
-                if (game != null);
+                if (game != null)
                     Console.WriteLine($"\tReferencenummer: \"{game.referenceNumber}\"");
             }
         }

@@ -34,7 +34,7 @@
             {
                 case 1:
                     warehouse.PrintWarehouse(); break;
-                case 2:
+                //case 2:
 
 
 
