@@ -15,10 +15,10 @@ namespace Genspil
         public int counter = 0;
 
         float price;
-        float conditionPrice;
+        float[] conditionPrice;
 
         string[] categories;
-        public object[] games = new object[1];
+        public object[] games;
 
         int[] numbPlayers = new int[2];
         int[] ageRecommended = new int [2];
@@ -37,6 +37,15 @@ namespace Genspil
             this.games = tempGames;
 
 
+        }
+        public GameGroup(string title, int[] numbPlayers, int[] ageRecommended, string[] categories, float price, float[] conditionPrice)
+        {
+            this.title = title;
+            this.numbPlayers = numbPlayers;
+            this.ageRecommended = ageRecommended;
+            this.categories = categories;
+            this.price = price;
+            this.conditionPrice = conditionPrice;
         }
         //instanciere et objekt af Games klassen
     }
