@@ -23,7 +23,7 @@ namespace Genspil
             {
                 int count = i+1;
                 GameGroup gameGroupInWarehouse = (GameGroup)warehouse.gameGroups[i];
-                Console.WriteLine( " 1 + " + gameGroupInWarehouse.title); 
+                Console.WriteLine( count + " " + gameGroupInWarehouse.title); 
             }
             Console.WriteLine("Vælg det tal som repræsenterer spilets titel eller tryk 0 for at tilføje en ny titel:");
             //registrere brugerens valg af gamegroup
@@ -43,9 +43,9 @@ namespace Genspil
             else if (this.ID == 0) { warehouse.CreateGameGroup(); }
             else
             {
-                int IDminus = ID - 1;
+                int gameGroupIndex = ID - 1;
                 //Henter titlen på gameGroupen. Her skal stå minus 1 fordi indeks starter fra 0, men brugerens valg af eksisterende spilgrupper starter fra 1.
-                GameGroup gameGroup = (GameGroup)warehouse.gameGroups[IDminus];
+                GameGroup gameGroup = (GameGroup)warehouse.gameGroups[gameGroupIndex];
                 gameGroup.counter++;
                 string title = gameGroup.title;
 
@@ -58,8 +58,7 @@ namespace Genspil
                 { 
 
                 }*/
-                Game newGame = new Game();
-                newGame.CreateGame(title, condition, gameGroup.counter);
+                Game newGame = new Game(title, condition, gameGroup.counter);
                 //Kunne ikke finde ud af hvordan metoden Create Game skulle kaldes her så skrev den bare ind herunder
 
 
@@ -75,11 +74,11 @@ namespace Genspil
                     for (int i = 0; i <= gameGroup.games.Length; i++)
                     {
                         tempGames[i] = gameGroup.games[i];
-                        tempGames[gameGroup.games.Length + 1] = newGame;
+
                     }
+                    tempGames[gameGroup.games.Length + 1] = newGame;
                 }
-                
-                //Indsætter det nye objekt på det sidste indeks i den nye array
+                gameGroup.games = tempGames;
                 
 
             }
