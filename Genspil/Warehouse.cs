@@ -10,22 +10,65 @@ namespace Genspil
 {
     public class Warehouse
     {
-        //_*_*_tester linjer skal fjernes, antager at der allerede er et spil matador i gameGroups i warehouse klassen
-        static GameGroup matador = new GameGroup();
+        object[] gameGroups;        
 
-        public object[] gameGroups = { matador };
-        
-        
         public object CreateGameGroup() 
-        { 
-            GameGroup newGameGroup = new GameGroup();
+        {
+            Console.WriteLine("Indtast en titel på den nye gamegroup:");
+            string title = Console.ReadLine();
+
+            int[] numbPlayers = new int[2];
+            Console.WriteLine("Indtast hvor mange spillere der minimum kan spille på med i " + title);
+            numbPlayers[0] = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Indtast hvor mange spillere der maksimum kan spille på med i " + title);
+            numbPlayers[1] = Convert.ToInt32(Console.ReadLine());
+
+            int[] ageRecommended = new int[2];
+            Console.WriteLine("Indtast hvor gammel en spiller minimum skal være i " + title);
+            ageRecommended[0] = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Indtast hvor gammel en spiller maksimum skal være i " + title);
+            ageRecommended[1] = Convert.ToInt32(Console.ReadLine());
+
+            bool exit = false;
+            string[] categories = new string[1];
+            while (exit = false) 
+            {
+                int count = 0;
+                Console.WriteLine("Indtast en kategori for " + title + ", eller tryk 0 for at gå videre");
+                string[] categories1 = new string[count+1];
+                categories1[count] = Console.ReadLine();
+                if (categories1[count] == "0") exit = true;
+                return categories = categories1;
+            }
+
+            Console.WriteLine("Indtast en pris på spilgruppen");
+            float price =  float.Parse(Console.ReadLine());
+
+            //-.-.-.-.-.- SKAL DE INDTASTE DISCOUNTEN SELV? HVIS JA ER KODEN HER
+            float[] conditionPrice = new float[6];
+            foreach (int condition in conditionPrice)
+            {
+                if (condition == 0) Console.WriteLine("Indtast % discount på tilstand A:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
+                if (condition == 1) Console.WriteLine("Indtast discount på tilstand B:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
+                if (condition == 2) Console.WriteLine("Indtast discount på tilstand C:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
+                if (condition == 3) Console.WriteLine("Indtast discount på tilstand D:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
+                if (condition == 4) Console.WriteLine("Indtast discount på tilstand E:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
+                if (condition == 5) Console.WriteLine("Indtast discount på tilstand F:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
+            }
+            
+            float aPrice = float.Parse(Console.ReadLine());
+
+            GameGroup newGameGroup = new GameGroup(title, numbPlayers, ageRecommended, categories, price, conditionPrice);
+
             object[] tempGameGroups = new object[gameGroups.Length + 1];
             for (int i = 0; i < gameGroups.Length; i++)
             {
                 tempGameGroups[i] = gameGroups[i];
             }
             tempGameGroups[gameGroups.Length + 1] = newGameGroup;
-            return gameGroups=tempGameGroups;
+            return gameGroups = tempGameGroups;
+
+
         }
         /*public object AddGame(int ID) 
         {
