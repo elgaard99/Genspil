@@ -2,11 +2,15 @@
 {
     internal class Game
     {
-        public string referenceNumber {  get; set; }
-        
+        public int NumberOfPlayers { get; set; }
+        public int AgeRecommended { get; set; }
+        public string Categories { get; set; }
+        public string Title { get; set; }
+
         public Game (string referenceNumber)
         {
-            this.referenceNumber = referenceNumber;
+            referenceNumber = referenceNumber;
+
         }
         // metoeden 
         public void MemberName()

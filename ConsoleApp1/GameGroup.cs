@@ -30,6 +30,7 @@ namespace ConsoleApp1
             Price = price;
             ConditionPrice = conditionPrice;
         }
+       
 
         public void MemberName()
         {
