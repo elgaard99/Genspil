@@ -12,5 +12,18 @@ namespace Genspil
 
         public Game(string referenceNumber)
         { this.referenceNumber = referenceNumber; }
+
+        //Muligvis god idé med en property?
+        /*        public string ReferenceNumber 
+                { 
+                    get { return referenceNumber; } 
+                    set {  referenceNumber = value; }
+                }*/
+        //Laver et reference nummer ud fra title og condition og en counter der ligger i gamegroup objektet som findes i Warehouse klassen
+        public Game(string title, string condition, int counter)
+        {
+            this.referenceNumber = title + "-" + counter + condition;
+        }
+
     }
 }
