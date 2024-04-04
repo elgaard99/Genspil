@@ -19,23 +19,23 @@ namespace Genspil
             //_*_*_tester linje skal fjernes, antager at der allerede er et spil i gameGroups i warehouse klassen
             Console.Clear();
             //printer alle valg for gamegroup
-            for (int i = 0; i < warehouse.gameGroups.Length; i++)
+            for (int i = 0; i < warehouse.gamegroups.Length; i++)
             {
                 int count = i + 1;
-                GameGroup gameGroupInWarehouse = (GameGroup)warehouse.gameGroups[i];
+                Gamegroup gameGroupInWarehouse = (Gamegroup)warehouse.gamegroups[i];
                 Console.WriteLine(count + " " + gameGroupInWarehouse.title);
             }
             Console.WriteLine("Vælg det tal som repræsenterer spilets titel eller tryk 0 for at tilføje en ny titel:");
             //registrere brugerens valg af gamegroup
             this.ID = Convert.ToInt32(Console.ReadLine());
 
-            if (this.ID > warehouse.gameGroups.Length)
+            if (this.ID > warehouse.gamegroups.Length)
             {
-                while (ID > warehouse.gameGroups.Length)
+                while (ID > warehouse.gamegroups.Length)
                 {
                     Console.Clear();
                     Console.WriteLine("Du har ikke valgt et gyldigt nummer. Prøv igen, eller tryk 0 for at lave en ny gruppe");
-                    foreach (object gameGroup in warehouse.gameGroups) { Console.WriteLine(gameGroup); }
+                    foreach (object gameGroup in warehouse.gamegroups) { Console.WriteLine(gameGroup); }
                     Console.WriteLine("Vælg det tal som repræsenterer spilets titel eller tryk 0 for at tilføje en ny titel:");
                     this.ID = Convert.ToInt32(Console.ReadLine());
                 }
@@ -45,7 +45,7 @@ namespace Genspil
             {
                 int gameGroupIndex = ID - 1;
                 //Henter titlen på gameGroupen. Her skal stå minus 1 fordi indeks starter fra 0, men brugerens valg af eksisterende spilgrupper starter fra 1.
-                GameGroup gameGroup = (GameGroup)warehouse.gameGroups[gameGroupIndex];
+                Gamegroup gameGroup = (Gamegroup)warehouse.gamegroups[gameGroupIndex];
                 gameGroup.counter++;
                 string title = gameGroup.title;
 
@@ -78,7 +78,7 @@ namespace Genspil
                     }
                     tempGames[gameGroup.games.Length + 1] = newGame;
                 }
-                gameGroup.games = tempGames;
+                gameGroup.games = null;//tempGames;
 
 
             }

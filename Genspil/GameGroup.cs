@@ -17,7 +17,9 @@ namespace Genspil
         public float price;
         public float[] conditionPrice; 
         public Game[] games = new Game[100]; // maks 100 spil
-        
+
+        public int counter = 0;
+
         public Gamegroup(string title)
         {
             this.title = title;

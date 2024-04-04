@@ -12,6 +12,7 @@ namespace Genspil
 
         public Game[] ReferenceNumbers;
 
+        /*
         public Request(GameGroup gameGroup, Game[] referenceNumbers)
         {
             GameGroup = gameGroup;
@@ -73,6 +74,7 @@ namespace Genspil
             }
             
             
-        } 
+        }
+        */
     }
 }

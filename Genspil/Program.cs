@@ -19,6 +19,10 @@
             warehouse.gamegroups[1].games[1] = new Game("002-A");
             warehouse.gamegroups[1].games[2] = new Game("003-B");
 
+            warehouse.gamegroups[2] = new Gamegroup("Catan");
+            warehouse.gamegroups[2].games[0] = new Game("001-C");
+            warehouse.gamegroups[2].games[1] = new Game("002-A");
+            warehouse.gamegroups[2].games[2] = new Game("003-B");
 
 
             Console.WriteLine("Vælg menupunkt: ");
@@ -27,8 +31,6 @@
 
             int menuItem;
             int.TryParse(Console.ReadLine(), out menuItem);
-
-
 
             switch (menuItem)
             {

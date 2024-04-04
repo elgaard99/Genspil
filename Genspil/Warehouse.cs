@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,13 +17,22 @@ namespace Genspil
             Console.Clear();
 
             Console.WriteLine("Hvordan skal listen sorteres? Tast t for titel eller g for genre");
-            char sorting = Console.ReadLine()[0];
+            string sorting = Console.ReadLine();
 
             // sortér gameGroups efter enten title eller genre
+            string[] arrKeys = new string[gamegroups.Length];
+            for (int i = 0; i < arrKeys.Length; i++)
+            {
+                if (gamegroups[i] != null)
+                    arrKeys[i] = (sorting == "t" ? gamegroups[i].title : null);
+            }
+
+            Gamegroup[] sortedGamegroups = gamegroups;
+            Array.Sort(arrKeys, sortedGamegroups);
 
             Console.Clear();
 
-            foreach (Gamegroup group in gamegroups)
+            foreach (Gamegroup group in sortedGamegroups)
             {
                 if (group != null)
                 {
@@ -33,8 +43,6 @@ namespace Genspil
                     
             }
         }
-
-        object[] gameGroups;
 
         public object CreateGameGroup()
         {
@@ -82,15 +90,15 @@ namespace Genspil
 
             float aPrice = float.Parse(Console.ReadLine());
 
-            GameGroup newGameGroup = new GameGroup(title, numbPlayers, ageRecommended, categories, price, conditionPrice);
+            Gamegroup newGameGroup = new Gamegroup(title, numbPlayers, ageRecommended, categories, price, conditionPrice);
 
-            object[] tempGameGroups = new object[gameGroups.Length + 1];
-            for (int i = 0; i < gameGroups.Length; i++)
+            object[] tempGameGroups = new object[gamegroups.Length + 1];
+            for (int i = 0; i < gamegroups.Length; i++)
             {
-                tempGameGroups[i] = gameGroups[i];
+                tempGameGroups[i] = gamegroups[i];
             }
-            tempGameGroups[gameGroups.Length + 1] = newGameGroup;
-            return gameGroups = tempGameGroups;
+            tempGameGroups[gamegroups.Length + 1] = newGameGroup;
+            return null; //gamegroups = tempGameGroups;
 
 
         }
