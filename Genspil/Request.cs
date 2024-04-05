@@ -10,9 +10,11 @@ namespace Genspil
     {
         public Gamegroup requestedGamegroup;
 
+        // hvordan bruges ReferenceNumbers?
+        /*
         public Game[] ReferenceNumbers;
 
-        /*
+        
         public Request(GameGroup gameGroup, Game[] referenceNumbers)
         {
             GameGroup = gameGroup;
@@ -76,5 +78,6 @@ namespace Genspil
             
         }
         */
+        
     }
 }

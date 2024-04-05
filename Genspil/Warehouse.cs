@@ -88,8 +88,6 @@ namespace Genspil
                 if (condition == 5) Console.WriteLine("Indtast discount på tilstand F:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
             }
 
-            float aPrice = float.Parse(Console.ReadLine());
-
             Gamegroup newGameGroup = new Gamegroup(title, numbPlayers, ageRecommended, categories, price, conditionPrice);
 
             object[] tempGameGroups = new object[gamegroups.Length + 1];

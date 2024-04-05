@@ -10,6 +10,7 @@ namespace Genspil
 
     internal class Gamegroup
     {
+        public int counter = 0;
         public string title;
         public int[] numbPlayers = new int[2]; // idx 0 = fra antal spillere, idx 1 = til antal spillere
         public int[] ageRecommended = new int[2]; // idx 0 = fra år, idx 1 = til år
@@ -18,11 +19,14 @@ namespace Genspil
         public float[] conditionPrice; 
         public Game[] games = new Game[100]; // maks 100 spil
 
-        public int counter = 0;
-
-        public Gamegroup(string title)
+        public Gamegroup(string title, int[] numbPlayers, int[] ageRecommended, string[] categories, float price, float[] conditionPrice)
         {
             this.title = title;
+            this.numbPlayers = numbPlayers;
+            this.ageRecommended = ageRecommended;
+            this.categories = categories;
+            this.price = price;
+            this.conditionPrice = conditionPrice;
         }
 
         public void PrintGamegroup()
@@ -50,15 +54,8 @@ namespace Genspil
 
 
         }
-        public Gamegroup(string title, int[] numbPlayers, int[] ageRecommended, string[] categories, float price, float[] conditionPrice)
-        {
-            this.title = title;
-            this.numbPlayers = numbPlayers;
-            this.ageRecommended = ageRecommended;
-            this.categories = categories;
-            this.price = price;
-            this.conditionPrice = conditionPrice;
-        }
+
+        
         //instanciere et objekt af Games klassen
 
     }

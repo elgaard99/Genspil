@@ -10,12 +10,14 @@ namespace Genspil
     {
         public string firstName;
         public string lastName;
-        public int id;
+        public int phoneNumber;
+        public string email;
+        public int customerNumber;
         public Request[] requests = new Request[100]; // maks 100 forespørgelser
 
-        public Customer()
+        public Customer(string firstName = "", int ?phoneNumber = null)
         {
-            
+            this.firstName = firstName;
         }
     }
 }
