@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+//Problemer i valg af conditionPrice
+
 namespace Genspil
 {
     internal class Warehouse
@@ -67,34 +70,28 @@ namespace Genspil
             for (int i = 0; i < gamegroups.Length; i++)
                 Console.WriteLine($"Tast {i +1}: {gamegroups[i].title}");
 
-            int chooseGamegroup = 1;
+            int chooseGamegroup;
             while (true)
             {
-                if (!int.TryParse(Console.ReadLine(), out chooseGamegroup))
-                {
-                    Console.WriteLine("Du skal angive et tal");
-                    continue;
-                }
 
-                break;
+                if (int.TryParse(Console.ReadLine(), out chooseGamegroup))
+                    break;
+
+                Console.WriteLine("Du skal angive et tal");
 
             }
 
-            string message =
-                $"Hvad vil du gerne?\n\tTast 1: Tilføje\n\tTast 2: Slette\n";
-            Console.WriteLine(message);
+            Console.WriteLine("Hvad vil du gerne?\n\tTast 1: Tilføje\n\tTast 2: Slette\n");
 
             int chooseWhatToDo;
             while (true)
             {
-                if (!int.TryParse(Console.ReadLine(), out chooseWhatToDo))
-                {
-                    Console.WriteLine("Du skal angive et tal");
-                    continue;
-                }
 
-                break;
-
+                if (int.TryParse(Console.ReadLine(), out chooseWhatToDo))
+                    break;
+                
+                Console.WriteLine("Du skal angive et tal");
+                
             }
 
             if (chooseWhatToDo == 1)
@@ -105,7 +102,7 @@ namespace Genspil
 
         }
 
-        public object CreateGameGroup()
+        public void CreateGamegroup()
         {
             Console.WriteLine("Indtast en titel på den nye gamegroup:");
             string title = Console.ReadLine();
@@ -131,36 +128,76 @@ namespace Genspil
                 string[] categories1 = new string[count + 1];
                 categories1[count] = Console.ReadLine();
                 if (categories1[count] == "0") exit = true;
-                return categories = categories1;
+                categories = categories1;
             }
 
             Console.WriteLine("Indtast en pris på spilgruppen");
             float price = float.Parse(Console.ReadLine());
 
             //-.-.-.-.-.- SKAL DE INDTASTE DISCOUNTEN SELV? HVIS JA ER KODEN HER
-            float[] conditionPrice = new float[6];
+            float[] conditionPrice = new float[4];
             foreach (int condition in conditionPrice)
             {
                 if (condition == 0) Console.WriteLine("Indtast % discount på tilstand A:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
                 if (condition == 1) Console.WriteLine("Indtast discount på tilstand B:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
                 if (condition == 2) Console.WriteLine("Indtast discount på tilstand C:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
                 if (condition == 3) Console.WriteLine("Indtast discount på tilstand D:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
-                if (condition == 4) Console.WriteLine("Indtast discount på tilstand E:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
-                if (condition == 5) Console.WriteLine("Indtast discount på tilstand F:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
+                //if (condition == 4) Console.WriteLine("Indtast discount på tilstand E:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
+                //if (condition == 5) Console.WriteLine("Indtast discount på tilstand F:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
             }
 
             Gamegroup newGameGroup = new Gamegroup(title, numbPlayers, ageRecommended, categories, price, conditionPrice);
-
-            if (gamegroups == null)
-                Console.WriteLine("is null");
 
             Gamegroup[] tempGameGroups = new Gamegroup[gamegroups.Length + 1];
             for (int i = 0; i < gamegroups.Length; i++)
             {
                 tempGameGroups[i] = gamegroups[i];
             }
+
             tempGameGroups[gamegroups.Length + 1] = newGameGroup;
-            return null; //gamegroups = tempGameGroups;
+
+            gamegroups = tempGameGroups;
+
+        }
+
+        public void RemoveGamegroup()
+        {
+            Console.WriteLine("Hvilken gamegroup ønsker du at slette?");
+
+            for (int i = 0; i < gamegroups.Length; i++)
+                Console.WriteLine($"\tTast {i +1}: {gamegroups[i].title}");
+
+            int gamegroupIndex = 0;
+            while (true)
+            {
+
+                if (int.TryParse(Console.ReadLine(), out gamegroupIndex))
+                {
+                    gamegroupIndex--;
+                    if (gamegroupIndex >= 0 && gamegroupIndex < gamegroups.Length)
+                        break;
+                }
+
+                Console.WriteLine("Du skal indtaste et gyldigt tal.");
+
+            }
+
+            // vi kan ikke genbruge den "oprindlige" array af objekter , da vi ikke kan ændre længden på en array. Så derfor laver jeg en midlertidig arra der er 1 indeks længere end originalen og gemmer objektet i den sidste
+            Gamegroup[] tempGamegroups = new Gamegroup[this.gamegroups.Length - 1];
+
+            //Indsætter alle værdierne fra games array i den nye tempGames array
+            for (int i = 0; i < this.gamegroups.Length - 1; i++)
+            {
+                if (i < gamegroupIndex)
+                    tempGamegroups[i] = this.gamegroups[i];
+
+                else
+                    tempGamegroups[i] = this.gamegroups[i + 1];
+
+            }
+
+            //Gemmer den nye array "oveni" den gamle array som derfor bliver erstattet af den nye array.
+            this.gamegroups = tempGamegroups;
 
         }
         /*public object AddGame(int ID) 

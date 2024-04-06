@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Genspil
 {
-    // hvad bruger vi conditionPrice til ??
 
     internal class Gamegroup
     {
@@ -38,29 +37,31 @@ namespace Genspil
                     Console.WriteLine($"\tReferencenummer: \"{game.ReferenceNumber}\"");
             }
         }
+
         public void AddGameToGamegroup()
         {
             // vi kan ikke genbruge den "oprindlige" array af objekter , da vi ikke kan ændre længden på en array. Så derfor laver jeg en midlertidig arra der er 1 indeks længere end originalen og gemmer objektet i den sidste
             Game[] tempGames = new Game[this.games.Length + 1];
+            
             //Indsætter alle værdierne fra games array i den nye tempGames array
             for (int i = 0; i < this.games.Length; i++)
             {
                 tempGames[i] = this.games[i];
             }
 
-            Console.WriteLine($"Hvilken stand er spillet i? A, B, C, D, E eller F\n");
+            //Her skal brugeren indtaste hvilken tilstand spillet er i
+            Console.WriteLine("Vælg tilstanden som " + this.title + " spillet er i:");
+            Console.WriteLine("A: Så godt som nyt \nB: Meget lidt slidt \nC: Spillet er rimelig brugt \nD: Spillet ligner et bombet lokum");
 
             char chooseCondition = Convert.ToChar("A");
             while (true)
             {
-                if (!char.TryParse(Console.ReadLine(), out chooseCondition))
-                {
-                    Console.WriteLine("Du skal angive et bogstav. A, B, C, D, E eller F");
-                    continue;
-                }
 
-                break;
+                if (char.TryParse(Console.ReadLine(), out chooseCondition))
+                    break;
 
+                Console.WriteLine("Du skal angive et bogstav. A, B, C, eller D");
+                
             }
 
             //Indsætter det nye objekt på det sidste indeks i den nye array
