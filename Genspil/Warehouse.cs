@@ -63,45 +63,6 @@ namespace Genspil
             
         }
 
-        public void EditGames()
-        {
-
-            Console.WriteLine("Hvilken titel vil du tilføje/ slette et spil i?");
-            for (int i = 0; i < gamegroups.Length; i++)
-                Console.WriteLine($"Tast {i +1}: {gamegroups[i].title}");
-
-            int chooseGamegroup;
-            while (true)
-            {
-
-                if (int.TryParse(Console.ReadLine(), out chooseGamegroup))
-                    break;
-
-                Console.WriteLine("Du skal angive et tal");
-
-            }
-
-            Console.WriteLine("Hvad vil du gerne?\n\tTast 1: Tilføje\n\tTast 2: Slette\n");
-
-            int chooseWhatToDo;
-            while (true)
-            {
-
-                if (int.TryParse(Console.ReadLine(), out chooseWhatToDo))
-                    break;
-                
-                Console.WriteLine("Du skal angive et tal");
-                
-            }
-
-            if (chooseWhatToDo == 1)
-                gamegroups[chooseGamegroup -1].AddGameToGamegroup();
-
-            else 
-                gamegroups[chooseGamegroup -1].RemoveGameFromGamegroup();
-
-        }
-
         public void CreateGamegroup()
         {
             Console.WriteLine("Indtast en titel på den nye gamegroup:");
