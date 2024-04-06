@@ -81,9 +81,7 @@ namespace Genspil
             }
 
             string message =
-                $"Hvad vil du gerne?\n" +
-                $"\tTast 1: Tilføje\n" +
-                $"\tTast 2: Slette\n";
+                $"Hvad vil du gerne?\n\tTast 1: Tilføje\n\tTast 2: Slette\n";
             Console.WriteLine(message);
 
             int chooseWhatToDo;

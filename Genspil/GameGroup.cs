@@ -51,17 +51,17 @@ namespace Genspil
             Console.WriteLine($"Hvilken stand er spillet i? A, B, C, D, E eller F\n");
 
             char chooseCondition = Convert.ToChar("A");
-            //while (true)
-            //{
-            //    if (!char.TryParse(Console.ReadLine(), out chooseCondition))
-            //    {
-            //        Console.WriteLine("Du skal angive et bogstav. A, B, C, D, E eller F");
-            //        continue;
-            //    }
+            while (true)
+            {
+                if (!char.TryParse(Console.ReadLine(), out chooseCondition))
+                {
+                    Console.WriteLine("Du skal angive et bogstav. A, B, C, D, E eller F");
+                    continue;
+                }
 
-            //    break;
+                break;
 
-            //}
+            }
 
             //Indsætter det nye objekt på det sidste indeks i den nye array
             if (this.games.Length == 0)
