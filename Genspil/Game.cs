@@ -25,8 +25,18 @@ namespace Genspil
         //Laver et reference nummer ud fra title og condition og en counter der ligger i gamegroup objektet som findes i Warehouse klassen
         public Game(string title, string condition, Game[] exsistingGames)
         {
+            this.referenceNumber = CreateReferenceNumber(title, condition, exsistingGames);
+        }
+
+        public Game(string referenceNumber)
+        {
+            this.referenceNumber = referenceNumber;
+        }
+
+        string CreateReferenceNumber(string title, string condition, Game[] exsistingGames)
+        {
             if (exsistingGames.Length == 0)
-                this.referenceNumber = title + "-" + "0001" + condition;
+                return title + "-" + "0001" + condition;
 
             else if (exsistingGames.Length == 9999)
                 throw new Exception("Too many games. Maximum number of games in a gamegroup is 9999");
@@ -34,11 +44,11 @@ namespace Genspil
             else
             {
                 int[] refNumbers = new int[exsistingGames.Length];
-                
+
                 for (int i = 0; i < exsistingGames.Length; i++)
                 {
 
-                    int startIndexOfNumber = exsistingGames[i].ReferenceNumber.IndexOf("-") +1;
+                    int startIndexOfNumber = exsistingGames[i].ReferenceNumber.IndexOf("-") + 1;
 
                     refNumbers[i] = int.Parse(exsistingGames[i].ReferenceNumber.Substring(startIndexOfNumber, 4)); //gets the count-part of a reference-number
                 }
@@ -46,17 +56,17 @@ namespace Genspil
                 Array.Sort(refNumbers);
 
                 int counter = 0;
-                foreach (int  refNumber in refNumbers) 
+                foreach (int refNumber in refNumbers)
                 {
                     counter++;
-                    
+
                     if (refNumber != counter)
                         break;
 
                     else if (counter == refNumbers.Length)
                         counter++;
                 }
-                
+
                 // create refnumber
                 string newReferenceNumber = "";
                 if (counter < 10)
@@ -70,14 +80,9 @@ namespace Genspil
 
                 else
                     newReferenceNumber = counter.ToString();
-                
-                this.referenceNumber = title + "-" + newReferenceNumber + condition;
-            }
-        }
 
-        public Game(string referenceNumber)
-        {
-            this.referenceNumber = referenceNumber;
+                return title + "-" + newReferenceNumber + condition;
+            }
         }
     }
 }

@@ -14,6 +14,46 @@ namespace Genspil
 
         public Warehouse warehouse = new Warehouse(null);
 
+        public void EditGames()
+        {
+
+            Console.WriteLine("Hvilken titel vil du tilføje/ slette et spil i?");
+            for (int i = 0; i < warehouse.gamegroups.Length; i++)
+                Console.WriteLine($"Tast {i + 1}: {warehouse.gamegroups[i].title}");
+
+            int chooseGamegroup;
+            while (true)
+            {
+
+                if (int.TryParse(Console.ReadLine(), out chooseGamegroup))
+                    break;
+
+                Console.WriteLine("Du skal angive et tal");
+
+            }
+
+            Console.WriteLine("Hvad vil du gerne?\n\tTast 1: Tilføje\n\tTast 2: Slette\n");
+
+            int chooseWhatToDo;
+            while (true)
+            {
+
+                if (int.TryParse(Console.ReadLine(), out chooseWhatToDo))
+                    break;
+
+                Console.WriteLine("Du skal angive et tal");
+
+            }
+
+            if (chooseWhatToDo == 1)
+                warehouse.gamegroups[chooseGamegroup - 1].AddGame();
+
+            else
+                warehouse.gamegroups[chooseGamegroup - 1].RemoveGame();
+
+        }
+
+
         public void AddGame()
         {
             //_*_*_tester linje skal fjernes, antager at der allerede er et spil i gameGroups i warehouse klassen

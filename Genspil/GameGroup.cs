@@ -38,7 +38,7 @@ namespace Genspil
             }
         }
 
-        public void AddGameToGamegroup()
+        public void AddGame()
         {
             // vi kan ikke genbruge den "oprindlige" array af objekter , da vi ikke kan ændre længden på en array. Så derfor laver jeg en midlertidig arra der er 1 indeks længere end originalen og gemmer objektet i den sidste
             Game[] tempGames = new Game[this.games.Length + 1];
@@ -76,7 +76,7 @@ namespace Genspil
 
         }
 
-        public void RemoveGameFromGamegroup()
+        public void RemoveGame()
         {
             Console.WriteLine("Hvilket spil ønsker du at slette?");
 
