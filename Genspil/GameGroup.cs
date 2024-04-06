@@ -38,7 +38,7 @@ namespace Genspil
                     Console.WriteLine($"\tReferencenummer: \"{game.ReferenceNumber}\"");
             }
         }
-        public void AddGameToGameGroup()
+        public void AddGameToGamegroup()
         {
             // vi kan ikke genbruge den "oprindlige" array af objekter , da vi ikke kan ændre længden på en array. Så derfor laver jeg en midlertidig arra der er 1 indeks længere end originalen og gemmer objektet i den sidste
             Game[] tempGames = new Game[this.games.Length + 1];
@@ -50,20 +50,18 @@ namespace Genspil
 
             Console.WriteLine($"Hvilken stand er spillet i? A, B, C, D, E eller F\n");
 
-            char chooseCondition;
-            while (true)
-            {
-                if (!char.TryParse(Console.ReadLine(), out chooseCondition))
-                {
-                    Console.WriteLine("Du skal angive et bogstav. A, B, C, D, E eller F");
-                    continue;
-                }
+            char chooseCondition = Convert.ToChar("A");
+            //while (true)
+            //{
+            //    if (!char.TryParse(Console.ReadLine(), out chooseCondition))
+            //    {
+            //        Console.WriteLine("Du skal angive et bogstav. A, B, C, D, E eller F");
+            //        continue;
+            //    }
 
-                break;
+            //    break;
 
-            }
-
-            chooseCondition = Convert.ToChar("A");
+            //}
 
             //Indsætter det nye objekt på det sidste indeks i den nye array
             if (this.games.Length == 0)
@@ -77,7 +75,60 @@ namespace Genspil
 
         }
 
-        
+        public void RemoveGameFromGamegroup()
+        {
+            Console.WriteLine("Hvilket spil ønsker du at slette?");
+
+            foreach (Game game in this.games)
+                Console.WriteLine("\t" + game.ReferenceNumber);
+
+            Console.Write("Indtast tallet i referencenummeret: ");
+
+            int ?idxOfGame = null;
+            while (true)
+            {
+                int refNumber;
+                if (!int.TryParse(Console.ReadLine(), out refNumber))
+                    Console.WriteLine("Du skal indtaste et gyldigt fircifret tal.");
+
+                else
+                {
+                    for (int i = 0; i < this.games.Length; i++)
+                    {
+                        int startIndexOfNumber = games[i].ReferenceNumber.IndexOf("-") + 1;
+
+                        if (refNumber == int.Parse(games[i].ReferenceNumber.Substring(startIndexOfNumber, 4))) //gets the count-part of a reference-number
+                        {
+                            idxOfGame = i;
+                            break;
+                        }
+
+                    }
+
+                    break;
+
+                }
+            }
+
+            // vi kan ikke genbruge den "oprindlige" array af objekter , da vi ikke kan ændre længden på en array. Så derfor laver jeg en midlertidig arra der er 1 indeks længere end originalen og gemmer objektet i den sidste
+            Game[] tempGames = new Game[this.games.Length -1];
+
+            //Indsætter alle værdierne fra games array i den nye tempGames array
+            for (int i = 0; i < this.games.Length -1; i++)
+            {
+                if (i < idxOfGame)
+                    tempGames[i] = this.games[i];
+
+                else
+                    tempGames[i] = this.games[i +1];
+
+            }
+                                    
+            //Gemmer den nye array "oveni" den gamle array som derfor bliver erstattet af den nye array.
+            this.games = tempGames;
+
+        }
+
         //instanciere et objekt af Games klassen
 
     }

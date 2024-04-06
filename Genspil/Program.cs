@@ -12,30 +12,21 @@
 
             Warehouse warehouse = new Warehouse(gamegroups);
             Customer[] customers = [];
-
-            // forskellige games laves i gamegruppen "Matador" og "UNO"
-            //warehouse.gamegroups[0].games[0] = new Game("001-A");
-            //warehouse.gamegroups[0].games[1] = new Game("002-A");
-            //warehouse.gamegroups[0].games[2] = new Game("003-B");
-
-            //warehouse.gamegroups[1] = new Gamegroup("UNO");
-            //warehouse.gamegroups[1].games[0] = new Game("001-C");
-            //warehouse.gamegroups[1].games[1] = new Game("002-A");
-            //warehouse.gamegroups[1].games[2] = new Game("003-B");
-
-            //warehouse.gamegroups[2] = new Gamegroup("Catan");
-            //warehouse.gamegroups[2].games[0] = new Game("001-C");
-            //warehouse.gamegroups[2].games[1] = new Game("002-A");
-            //warehouse.gamegroups[2].games[2] = new Game("003-B");
+            
+            warehouse.EditGames();
+            warehouse.PrintWarehouse();
 
             warehouse.EditGames();
-            warehouse.EditGames();
-            warehouse.EditGames();
-            warehouse.EditGames();
-
-            warehouse.gamegroups[0].games[0] = new Game("Matador-0005A");
+            warehouse.PrintWarehouse();
 
             warehouse.EditGames();
+            warehouse.PrintWarehouse();
+
+            warehouse.EditGames();
+            warehouse.PrintWarehouse();
+
+            warehouse.EditGames();
+            warehouse.PrintWarehouse();
 
             //Console.WriteLine("Vælg menupunkt: ");
             //Console.WriteLine("1. Print alle spil");
@@ -54,7 +45,7 @@
 
             //}
 
-            warehouse.PrintWarehouse();
+
 
             Console.ReadLine();
         }

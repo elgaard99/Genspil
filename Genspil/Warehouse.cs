@@ -22,7 +22,7 @@ namespace Genspil
             Console.Clear();
 
             Console.WriteLine("Hvordan skal listen sorteres? Tast t for titel eller g for genre");
-            string sorting = Console.ReadLine();
+            string sorting = "t";//Console.ReadLine();
 
             // sortér gameGroups efter enten title eller genre
             string[] arrKeys = new string[gamegroups.Length];
@@ -67,7 +67,7 @@ namespace Genspil
             for (int i = 0; i < gamegroups.Length; i++)
                 Console.WriteLine($"Tast {i +1}: {gamegroups[i].title}");
 
-            int chooseGamegroup;
+            int chooseGamegroup = 1;
             while (true)
             {
                 if (!int.TryParse(Console.ReadLine(), out chooseGamegroup))
@@ -99,10 +99,11 @@ namespace Genspil
 
             }
 
-            chooseWhatToDo = 1;
-            chooseGamegroup = 1;
             if (chooseWhatToDo == 1)
-                gamegroups[chooseGamegroup -1].AddGameToGameGroup();
+                gamegroups[chooseGamegroup -1].AddGameToGamegroup();
+
+            else 
+                gamegroups[chooseGamegroup -1].RemoveGameFromGamegroup();
 
         }
 
