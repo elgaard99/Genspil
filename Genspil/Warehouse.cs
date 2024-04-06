@@ -9,7 +9,7 @@ namespace Genspil
 {
     internal class Warehouse
     {
-        public Gamegroup[] gamegroups = new Gamegroup[100]; //maks 100 forskellige "spilgrupper"
+        public Gamegroup[] gamegroups = new Gamegroup[0];
 
         public void PrintWarehouse()
         {
@@ -44,6 +44,16 @@ namespace Genspil
             }
         }
 
+        public void LoadGamegroups(DataHandler handler)
+        {
+
+
+        }
+
+        public void SaveGamegroups(DataHandler handler)
+        { 
+            
+        }
         public object CreateGameGroup()
         {
             Console.WriteLine("Indtast en titel på den nye gamegroup:");
@@ -90,14 +100,13 @@ namespace Genspil
 
             Gamegroup newGameGroup = new Gamegroup(title, numbPlayers, ageRecommended, categories, price, conditionPrice);
 
-            object[] tempGameGroups = new object[gamegroups.Length + 1];
+            Gamegroup[] tempGameGroups = new Gamegroup[gamegroups.Length + 1];
             for (int i = 0; i < gamegroups.Length; i++)
             {
                 tempGameGroups[i] = gamegroups[i];
             }
             tempGameGroups[gamegroups.Length + 1] = newGameGroup;
             return null; //gamegroups = tempGameGroups;
-
 
         }
         /*public object AddGame(int ID) 

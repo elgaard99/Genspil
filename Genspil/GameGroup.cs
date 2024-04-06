@@ -17,7 +17,7 @@ namespace Genspil
         public string[] categories = new string[5]; // maks 5 kategorier
         public float price;
         public float[] conditionPrice; 
-        public Game[] games = new Game[100]; // maks 100 spil
+        public Game[] games = [];
 
         public Gamegroup(string title, int[] numbPlayers, int[] ageRecommended, string[] categories, float price, float[] conditionPrice)
         {
