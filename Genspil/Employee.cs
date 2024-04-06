@@ -12,7 +12,7 @@ namespace Genspil
 
         public int ID;
 
-        public Warehouse warehouse = new Warehouse();
+        public Warehouse warehouse = new Warehouse(null);
 
         public void AddGame()
         {
@@ -46,7 +46,6 @@ namespace Genspil
                 int gameGroupIndex = ID - 1;
                 //Henter titlen på gameGroupen. Her skal stå minus 1 fordi indeks starter fra 0, men brugerens valg af eksisterende spilgrupper starter fra 1.
                 Gamegroup gameGroup = (Gamegroup)warehouse.gamegroups[gameGroupIndex];
-                gameGroup.counter++;
                 string title = gameGroup.title;
 
                 //Her skal brugeren indtaste hvilken tilstand spillet er i
@@ -58,7 +57,7 @@ namespace Genspil
                 { 
 
                 }*/
-                Game newGame = new Game(title, condition, gameGroup.counter);
+                Game newGame = new Game(title, condition, gameGroup.games);
                 //Kunne ikke finde ud af hvordan metoden Create Game skulle kaldes her så skrev den bare ind herunder
 
 

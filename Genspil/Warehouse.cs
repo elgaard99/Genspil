@@ -9,7 +9,12 @@ namespace Genspil
 {
     internal class Warehouse
     {
-        public Gamegroup[] gamegroups = new Gamegroup[0];
+        public Gamegroup[] gamegroups = [];
+
+        public Warehouse(Gamegroup[] gamegroups) 
+        { 
+            this.gamegroups = gamegroups;
+        }
 
         public void PrintWarehouse()
         {
@@ -54,6 +59,53 @@ namespace Genspil
         { 
             
         }
+
+        public void EditGames()
+        {
+
+            Console.WriteLine("Hvilken titel vil du tilføje/ slette et spil i?");
+            for (int i = 0; i < gamegroups.Length; i++)
+                Console.WriteLine($"Tast {i +1}: {gamegroups[i].title}");
+
+            int chooseGamegroup;
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out chooseGamegroup))
+                {
+                    Console.WriteLine("Du skal angive et tal");
+                    continue;
+                }
+
+                break;
+
+            }
+
+            string message =
+                $"Hvad vil du gerne?\n" +
+                $"\tTast 1: Tilføje\n" +
+                $"\tTast 2: Slette\n";
+            Console.WriteLine(message);
+
+            int chooseWhatToDo;
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out chooseWhatToDo))
+                {
+                    Console.WriteLine("Du skal angive et tal");
+                    continue;
+                }
+
+                break;
+
+            }
+
+            chooseWhatToDo = 1;
+            chooseGamegroup = 1;
+            if (chooseWhatToDo == 1)
+                gamegroups[chooseGamegroup -1].AddGameToGameGroup();
+
+        }
+
         public object CreateGameGroup()
         {
             Console.WriteLine("Indtast en titel på den nye gamegroup:");
@@ -99,6 +151,9 @@ namespace Genspil
             }
 
             Gamegroup newGameGroup = new Gamegroup(title, numbPlayers, ageRecommended, categories, price, conditionPrice);
+
+            if (gamegroups == null)
+                Console.WriteLine("is null");
 
             Gamegroup[] tempGameGroups = new Gamegroup[gamegroups.Length + 1];
             for (int i = 0; i < gamegroups.Length; i++)
