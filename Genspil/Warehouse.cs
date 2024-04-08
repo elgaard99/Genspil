@@ -21,7 +21,7 @@ namespace Genspil
 
         public void PrintWarehouse()
         {
-
+            //Bør vi måske i virkeligheden ændre dette til at tage udgangspunkt i data filen??
             Console.Clear();
 
             Console.WriteLine("Hvordan skal listen sorteres? Tast t for titel eller g for genre");
@@ -54,13 +54,36 @@ namespace Genspil
 
         public void LoadGamegroups(DataHandler handler)
         {
-
+            StreamReader ReadFromWareHouse = new StreamReader("C:\\Users\\dscha\\source\\repos\\TestAfKode\\TestAfKode\\test.txt");
+            //skal rettes til at tage hver enkelt Gamegroup i stedet tænker jeg umiddelbart
+            string file = ReadFromWareHouse.ReadToEnd();
+            ReadFromWareHouse.Close();
 
         }
 
         public void SaveGamegroups(DataHandler handler)
-        { 
-            
+        {
+            StreamWriter WriteToWareHouse = new StreamWriter("C:\\Users\\dscha\\source\\repos\\TestAfKode\\TestAfKode\\Gamegroups.txt");
+            foreach (gamegroup game in gamegroup)
+            {
+                WriteToWareHouse.WriteLine("Titel:" + gamegroup.title);
+                WriteToWareHouse.WriteLine("Kategorier:");
+                foreach (string category in gamegroup.categories)
+                {
+                    if (category == null) ;
+                    else
+                        WriteToWareHouse.Write("- " + category + "\n");
+                }
+                WriteToWareHouse.WriteLine("Spillere: " + gamegroup.numbPlayers[0] + "-" + gamegroup.numbPlayers[1]);
+                WriteToWareHouse.WriteLine("Alders anbefaling: " + gamegroup.ageRecommended[0] + "-" + gamegroup.ageRecommended[1] + " år");
+                for (int i = 0; i < game.conditionPrice.Length; i++)
+                {
+                    char condition = Convert.ToChar(65 + i);
+                    WriteToWareHouse.WriteLine("Pris for tilstand " + condition + ": " + gamegroup.conditionPrice[i]);
+                }
+                WriteToWareHouse.WriteLine("");
+            }
+            WriteToWareHouse.Close();
         }
 
         public void CreateGamegroup()
@@ -118,6 +141,7 @@ namespace Genspil
             tempGameGroups[gamegroups.Length + 1] = newGameGroup;
 
             gamegroups = tempGameGroups;
+            Array.Sort(gamegroups, new CompareTitle());
 
         }
 
@@ -159,7 +183,65 @@ namespace Genspil
 
             //Gemmer den nye array "oveni" den gamle array som derfor bliver erstattet af den nye array.
             this.gamegroups = tempGamegroups;
+            Array.Sort(gamegroups, new CompareTitle());
 
+        }
+        public class CompareTitle : IComparer
+        {
+            public int Compare(object x, object y)
+            {
+                return (new CaseInsensitiveComparer()).Compare(((gamegroup)x).title, ((gamegroup)y).title);
+            }
+        }
+        public class CompareCat : IComparer
+        {
+            public int Compare(object x, object y)
+            {
+                return (new CaseInsensitiveComparer()).Compare(((gamegroup)x).categories[0], ((gamegroup)y).categories[0]);
+            }
+        }
+        public string SearchTitle(string title)
+        {
+            //Tror denne er overkill fordi den jo i virkeligheden bare kan være en if statement :p
+            if (Array.BinarySearch(gamegroups, title) <= 0)
+            {
+                return Console.WriteLine("Spillet findes ikke i gamegroup");
+            }
+            //if (gamegroups==title) 
+            //Var itvivl om den skulle returnere gamegroup'ens title eller bare alle iformationer? Nedenstående er åbentlyst kun titlen, men tænker da det er federe med hele lortet.
+            else return gamegroups[Array.BinarySearch(gamegroups, title)].Title;
+        }
+
+        public string[] SearchCategories(string category)
+        {
+            int i = 0;
+            foreach (gamegroup group in gamegroups)
+            {
+                if (Array.BinarySearch(group.categories, category) >= 0)
+                {
+                    searchResultsCat[i] = group.title;
+                    Console.WriteLine(searchResultsCat[i] + " matcher kriteret " + category);
+                    i++;
+                }
+            }
+            return searchResultsCat;
+        }
+        public void SearchNumbPlayers(int min, int max)
+        {
+            int i = 0;
+            foreach (gamegroup group in games)
+            {
+                //Da array altid er 2 ingen grund til brug af binarysearch???
+                if (group.numbPlayers[0] <= min)
+                {
+                    if (group.numbPlayers[1] >= max)
+                    {
+                        searchResultsNumbPlayers[iNumb] = group.title;
+                        Console.WriteLine(searchResultsNumbPlayers[iNumb] + " matcher kriteret" + ". Det har rummer " + group.numbPlayers[0] + "-" + group.numbPlayers[1] + " spillere.");
+                        i++;
+                    }
+                }
+            }
         }
         /*public object AddGame(int ID) 
         {
