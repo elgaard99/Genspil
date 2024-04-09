@@ -66,8 +66,7 @@ namespace Genspil
                     break;
                 }
                 else if (idx == 999)
-                    throw new Exception("")
-
+                    throw new Exception("Too many games. Maximum number of games in a gamegroup is 999");
 
                 idx++;
                 
@@ -84,7 +83,7 @@ namespace Genspil
 
             Console.Write("Indtast tallet i referencenummeret: ");
 
-            int ?idxOfGame = null;
+            int idxOfGame = -1;
             while (true)
             {
                 int refNumber;
@@ -105,27 +104,16 @@ namespace Genspil
 
                     }
 
-                    break;
+                    if (idxOfGame != -1)
+                        break;
+
+                    else
+                        Console.WriteLine("Du skal indtaste et gyldigt fircifret tal.");
 
                 }
             }
 
-            // vi kan ikke genbruge den "oprindlige" array af objekter , da vi ikke kan ændre længden på en array. Så derfor laver jeg en midlertidig arra der er 1 indeks længere end originalen og gemmer objektet i den sidste
-            Game[] tempGames = new Game[this.games.Length -1];
-
-            //Indsætter alle værdierne fra games array i den nye tempGames array
-            for (int i = 0; i < this.games.Length -1; i++)
-            {
-                if (i < idxOfGame)
-                    tempGames[i] = this.games[i];
-
-                else
-                    tempGames[i] = this.games[i +1];
-
-            }
-                                    
-            //Gemmer den nye array "oveni" den gamle array som derfor bliver erstattet af den nye array.
-            this.games = tempGames;
+            games[idxOfGame] = null;
 
         }
 
