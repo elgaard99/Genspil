@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,7 @@ namespace Genspil
         public int[] ageRecommended = new int[2]; // idx 0 = fra år, idx 1 = til år
         public string[] categories = new string[5]; // maks 5 kategorier
         public float price;
-        public float[] conditionPrice; 
+        public float[] conditionPrice = new float[4];
         public Game[] games = [];
 
         public Gamegroup(string title, int[] numbPlayers, int[] ageRecommended, string[] categories, float price, float[] conditionPrice)
@@ -119,15 +120,24 @@ namespace Genspil
 
         public override string ToString()
         {
-            string s = @$"
-                    Title: {title},
-                     Number of players: {numbPlayers},
-                     Recommended Age: {ageRecommended},
-                     Categories: {categories},
-                     Price: {price},
-                     Condition Prices: {conditionPrice}";
+            string[] _conditionPrice = new string[4];
+            for (int i = 0;i < conditionPrice.Length;i++)
+                _conditionPrice[i] = conditionPrice[i].ToString();
 
-            s = Regex.Replace(s, @"\s+", " ");
+            string AddLeadingZero(int number)
+            {
+                return (number < 10 ? "0" + number.ToString() : number.ToString());
+            }
+            
+            string s = @$"
+                    Title: {title};
+                    Number of players: {AddLeadingZero(numbPlayers[0])}, {AddLeadingZero(numbPlayers[1])};
+                    Recommended Age: {AddLeadingZero(ageRecommended[0])}, {AddLeadingZero(ageRecommended[1])};
+                    Categories: {string.Join(",", categories)};
+                    Price: {price};
+                    Condition Prices: {string.Join("-", _conditionPrice)}";
+
+            s = Regex.Replace(s, @"\s+", "");
 
             return s ;
         }
