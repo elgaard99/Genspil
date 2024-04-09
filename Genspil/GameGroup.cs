@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Genspil
@@ -128,6 +129,21 @@ namespace Genspil
             //Gemmer den nye array "oveni" den gamle array som derfor bliver erstattet af den nye array.
             this.games = tempGames;
 
+        }
+
+        public override string ToString()
+        {
+            string s = @$"
+                    Title: {title},
+                     Number of players: {numbPlayers},
+                     Recommended Age: {ageRecommended},
+                     Categories: {categories},
+                     Price: {price},
+                     Condition Prices: {conditionPrice}";
+
+            s = Regex.Replace(s, @"\s+", " ");
+
+            return s ;
         }
 
         //instanciere et objekt af Games klassen

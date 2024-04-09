@@ -1,0 +1,48 @@
+Titel:kalaha
+Kategorier:
+- Noget andet
+- Terningspil
+Spillere: 2-2
+Alders anbefaling: 0-0 år
+Pris for tilstand A: 1,2156
+Pris for tilstand B: 2,213
+Pris for tilstand C: 3,132
+Pris for tilstand D: 5,312
+Pris for tilstand E: 4,532
+
+Titel:Ludo
+Kategorier:
+- Børnevenlig
+- Terningspil
+Spillere: 2-4
+Alders anbefaling: 0-0 år
+Pris for tilstand A: 1,2423
+Pris for tilstand B: 2,13
+Pris for tilstand C: 3,132
+Pris for tilstand D: 5,312
+Pris for tilstand E: 4,532
+
+Titel:Matador
+Kategorier:
+- Brætspil
+- Strategi
+- Terningspil
+Spillere: 2-4
+Alders anbefaling: 0-0 år
+Pris for tilstand A: 1,2432
+Pris for tilstand B: 2,213
+Pris for tilstand C: 3,132
+Pris for tilstand D: 5,312
+Pris for tilstand E: 4,532
+
+Titel:uno
+Kategorier:
+- Børnevenlig
+- Kortspil
+Spillere: 2-8
+Alders anbefaling: 0-0 år
+Pris for tilstand A: 1,22
+Pris for tilstand B: 2,13
+Pris for tilstand C: 3,132
+Pris for tilstand D: 5,312
+Pris for tilstand E: 4,532
