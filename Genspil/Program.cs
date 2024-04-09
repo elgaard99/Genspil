@@ -5,8 +5,8 @@
         static void Main(string[] args)
         {
 
+            // I skal indsætte stien til hvor gamegroupData.txt gemmes
             Environment.CurrentDirectory = "C:\\Visual Studio 2022\\Source\\Repos\\Genspil\\Genspil";
-            //string dirPath = Environment.CurrentDirectory;
 
             Gamegroup[] gamegroups =
             {
