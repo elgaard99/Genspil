@@ -63,6 +63,7 @@ namespace Genspil
 
         public void SaveGamegroups(DataHandler handler)
         {
+            /*
             StreamWriter WriteToWareHouse = new StreamWriter("C:\\Users\\dscha\\source\\repos\\TestAfKode\\TestAfKode\\Gamegroups.txt");
             foreach (Gamegroup game in gamegroups)
             {
@@ -84,6 +85,7 @@ namespace Genspil
                 WriteToWareHouse.WriteLine("");
             }
             WriteToWareHouse.Close();
+            */
         }
 
         public void CreateGamegroup()

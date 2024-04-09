@@ -23,9 +23,9 @@ namespace Genspil
                 }*/
 
         //Laver et reference nummer ud fra title og condition og en counter der ligger i gamegroup objektet som findes i Warehouse klassen
-        public Game(string title, string condition, Game[] exsistingGames)
+        public Game(string title, string condition, int index)
         {
-            this.referenceNumber = CreateReferenceNumber(title, condition, exsistingGames);
+            this.referenceNumber = CreateReferenceNumber(title, condition, index);
         }
 
         public Game(string referenceNumber)
@@ -33,56 +33,28 @@ namespace Genspil
             this.referenceNumber = referenceNumber;
         }
 
-        string CreateReferenceNumber(string title, string condition, Game[] exsistingGames)
+        string CreateReferenceNumber(string title, string condition, int index)
         {
-            if (exsistingGames.Length == 0)
-                return title + "-" + "0001" + condition;
 
-            else if (exsistingGames.Length == 9999)
-                throw new Exception("Too many games. Maximum number of games in a gamegroup is 9999");
+            index++;
+
+            // create refnumber
+            string newReferenceNumber = "";
+
+            if (index < 10)
+                newReferenceNumber = "000" + index;
+
+            else if (index < 100)
+                newReferenceNumber = "00" + index;
+
+            else if (index < 1000)
+                newReferenceNumber = "0" + index;
 
             else
-            {
-                int[] refNumbers = new int[exsistingGames.Length];
+                newReferenceNumber = index.ToString();
 
-                for (int i = 0; i < exsistingGames.Length; i++)
-                {
+            return title + "-" + newReferenceNumber + condition;
 
-                    int startIndexOfNumber = exsistingGames[i].ReferenceNumber.IndexOf("-") + 1;
-
-                    refNumbers[i] = int.Parse(exsistingGames[i].ReferenceNumber.Substring(startIndexOfNumber, 4)); //gets the count-part of a reference-number
-                }
-
-                Array.Sort(refNumbers);
-
-                int counter = 0;
-                foreach (int refNumber in refNumbers)
-                {
-                    counter++;
-
-                    if (refNumber != counter)
-                        break;
-
-                    else if (counter == refNumbers.Length)
-                        counter++;
-                }
-
-                // create refnumber
-                string newReferenceNumber = "";
-                if (counter < 10)
-                    newReferenceNumber = "000" + counter;
-
-                else if (counter < 100)
-                    newReferenceNumber = "00" + counter;
-
-                else if (counter < 1000)
-                    newReferenceNumber = "0" + counter;
-
-                else
-                    newReferenceNumber = counter.ToString();
-
-                return title + "-" + newReferenceNumber + condition;
-            }
         }
     }
 }

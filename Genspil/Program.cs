@@ -5,21 +5,26 @@
         static void Main(string[] args)
         {
 
+            Environment.CurrentDirectory = "C:\\Visual Studio 2022\\Source\\Repos\\Genspil\\Genspil";
+            //string dirPath = Environment.CurrentDirectory;
+
             Gamegroup[] gamegroups =
             {
-                new Gamegroup("Matador", new[] { 2, 6 }, new[] { 10, 99 }, new[] { "børn", "strategi" }, 199.95F, new[] { 1F, 0.9F, 0.8F, 0.7F, 0.6F, 0.5F }),
-                new Gamegroup("UNO", new[] { 2, 6 }, new[] { 10, 99 }, new[] { "børn", "strategi" }, 199.95F, new[] { 1F, 0.9F, 0.8F, 0.7F, 0.6F, 0.5F }),
-                new Gamegroup("Catan", new[] { 3, 12 }, new[] { 10, 99 }, new[] { "brætspil", "strategi" }, 199.95F, new[] { 1F, 0.9F, 0.8F, 0.7F, 0.6F, 0.5F }),
-                new Gamegroup("Kalaha", new[] { 2, 6 }, new[] { 10, 12 }, new[] { "kugler", "strategi" }, 199.95F, new[] { 1F, 0.9F, 0.8F, 0.7F, 0.6F, 0.5F })
+                new Gamegroup("Matador", new[] { 2, 6 }, new[] { 10, 99 }, new[] { "børn", "strategi" }, 199.95F, new[] { 1F, 0.9F, 0.8F, 0.7F }),
+                new Gamegroup("UNO", new[] { 2, 6 }, new[] { 10, 99 }, new[] { "børn", "strategi" }, 199.95F, new[] { 1F, 0.9F, 0.8F, 0.7F }),
+                new Gamegroup("Catan", new[] { 3, 12 }, new[] { 10, 99 }, new[] { "brætspil", "strategi" }, 199.95F, new[] {1F, 0.9F, 0.8F, 0.7F }),
+                new Gamegroup("Kalaha", new[] { 2, 6 }, new[] { 10, 12 }, new[] { "kugler", "strategi" }, 199.95F, new[] {1F, 0.9F, 0.8F, 0.7F })
             };
 
             Warehouse warehouse = new Warehouse(gamegroups);
+            DataHandler handler = new DataHandler("gamegroupData.txt");
 
-            warehouse.PrintWarehouse();
+            handler.Save(warehouse.gamegroups);
+            Gamegroup[] gamegroups_ = handler.LoadGamegroups();
 
-            warehouse.RemoveGamegroup();
-
-            warehouse.PrintWarehouse();
+            Warehouse warehouse1 = new Warehouse(gamegroups_);
+            
+            warehouse1.PrintWarehouse();
 
             Console.ReadLine();
 
