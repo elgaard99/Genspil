@@ -25,7 +25,7 @@ namespace Genspil
         {
             foreach (string requestTitle in titles)
             {
-                Warehouse
+                warehouse
             }
         }
         public Gamegroup requestedGamegroup;

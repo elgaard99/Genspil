@@ -64,7 +64,7 @@ namespace Genspil
         public void SaveGamegroups(DataHandler handler)
         {
             StreamWriter WriteToWareHouse = new StreamWriter("C:\\Users\\dscha\\source\\repos\\TestAfKode\\TestAfKode\\Gamegroups.txt");
-            foreach (gamegroup game in gamegroup)
+            foreach (Gamegroup game in gamegroups)
             {
                 WriteToWareHouse.WriteLine("Titel:" + gamegroup.title);
                 WriteToWareHouse.WriteLine("Kategorier:");
@@ -190,32 +190,35 @@ namespace Genspil
         {
             public int Compare(object x, object y)
             {
-                return (new CaseInsensitiveComparer()).Compare(((gamegroup)x).title, ((gamegroup)y).title);
+                return (new CaseInsensitiveComparer()).Compare(((Gamegroup)x).title, ((Gamegroup)y).title);
             }
         }
         public class CompareCat : IComparer
         {
             public int Compare(object x, object y)
             {
-                return (new CaseInsensitiveComparer()).Compare(((gamegroup)x).categories[0], ((gamegroup)y).categories[0]);
+                return (new CaseInsensitiveComparer()).Compare(((Gamegroup)x).categories[0], ((Gamegroup)y).categories[0]);
             }
         }
-        public string SearchTitle(string title)
+        public object SearchTitle(string title)
         {
             //Tror denne er overkill fordi den jo i virkeligheden bare kan være en if statement :p
             if (Array.BinarySearch(gamegroups, title) <= 0)
             {
-                return Console.WriteLine("Spillet findes ikke i gamegroup");
+                string NoResult = "";
+                Console.WriteLine("Spillet findes ikke i gamegroup");
+                return NoResult;
             }
             //if (gamegroups==title) 
             //Var itvivl om den skulle returnere gamegroup'ens title eller bare alle iformationer? Nedenstående er åbentlyst kun titlen, men tænker da det er federe med hele lortet.
-            else return gamegroups[Array.BinarySearch(gamegroups, title)].Title;
+            else return gamegroups[Array.BinarySearch(gamegroups, title)];
         }
 
         public string[] SearchCategories(string category)
         {
+            string[] searchResultsCat= new string[5];
             int i = 0;
-            foreach (gamegroup group in gamegroups)
+            foreach (Gamegroup group in gamegroups)
             {
                 if (Array.BinarySearch(group.categories, category) >= 0)
                 {
@@ -223,23 +226,26 @@ namespace Genspil
                     Console.WriteLine(searchResultsCat[i] + " matcher kriteret " + category);
                     i++;
                 }
+                else
+                {
+                    string[] noResult = { "Intet", " resultat", "af søgning" };
+                    return noResult;
+                }
             }
             return searchResultsCat;
         }
         public void SearchNumbPlayers(int min, int max)
         {
             int i = 0;
-            foreach (gamegroup group in games)
+            string[] searchResultsNumbPlayers = new string[100];
+            foreach (Gamegroup group in gamegroups)
             {
                 //Da array altid er 2 ingen grund til brug af binarysearch???
-                if (group.numbPlayers[0] <= min)
+                if (group.numbPlayers[0] >= min && group.numbPlayers[0] >= max)
                 {
-                    if (group.numbPlayers[1] >= max)
-                    {
-                        searchResultsNumbPlayers[iNumb] = group.title;
-                        Console.WriteLine(searchResultsNumbPlayers[iNumb] + " matcher kriteret" + ". Det har rummer " + group.numbPlayers[0] + "-" + group.numbPlayers[1] + " spillere.");
-                        i++;
-                    }
+                    searchResultsNumbPlayers[i] = group.title;
+                    Console.WriteLine(searchResultsNumbPlayers[i] + " matcher kriteret" + ". Det har rummer " + group.numbPlayers[0] + "-" + group.numbPlayers[1] + " spillere.");
+                    i++;
                 }
             }
         }
