@@ -15,11 +15,8 @@
 
             Warehouse warehouse = new Warehouse(gamegroups);
 
-            warehouse.PrintWarehouse();
 
-            warehouse.RemoveGamegroup();
-
-            warehouse.PrintWarehouse();
+           
 
             Console.ReadLine();
 

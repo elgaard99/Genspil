@@ -16,7 +16,7 @@ namespace Genspil
         public string[] categories = new string[5]; // maks 5 kategorier
         public float price;
         public float[] conditionPrice; 
-        public Game[] games = new Game[1];
+        public Game[] games = [];
 
         public Gamegroup(string title, int[] numbPlayers, int[] ageRecommended, string[] categories, float price, float[] conditionPrice)
         {
@@ -26,7 +26,7 @@ namespace Genspil
             this.categories = categories;
             this.price = price;
             this.conditionPrice = conditionPrice;
-            Game[] games = new Game[1];
+            Game[] games = new Game[999];
         }
 
         public void PrintGamegroup()
@@ -41,15 +41,7 @@ namespace Genspil
 
         public void AddGame()
         {
-            // vi kan ikke genbruge den "oprindlige" array af objekter , da vi ikke kan ændre længden på en array. Så derfor laver jeg en midlertidig arra der er 1 indeks længere end originalen og gemmer objektet i den sidste
-            Game[] tempGames = new Game[this.games.Length + 1];
             
-            //Indsætter alle værdierne fra games array i den nye tempGames array
-            for (int i = 0; i < this.games.Length; i++)
-            {
-                tempGames[i] = this.games[i];
-            }
-
             //Her skal brugeren indtaste hvilken tilstand spillet er i
             Console.WriteLine("Vælg tilstanden som " + this.title + " spillet er i:");
             Console.WriteLine("A: Så godt som nyt \nB: Meget lidt slidt \nC: Spillet er rimelig brugt \nD: Spillet ligner et bombet lokum");
@@ -65,15 +57,21 @@ namespace Genspil
                 
             }
 
-            //Indsætter det nye objekt på det sidste indeks i den nye array
-            if (this.games.Length == 0)
-                tempGames[0] = new Game(this.title, chooseCondition.ToString(), this.games);
+            int idx = 0;
+            foreach (Game game in games)
+            {
+                if (game == null)
+                {
+                    games[idx] = new Game(this.title, chooseCondition.ToString(), idx);
+                    break;
+                }
+                else if (idx == 999)
+                    throw new Exception("")
 
-            else
-                tempGames[this.games.Length] = new Game(this.title, chooseCondition.ToString(), this.games);
 
-            //Gemmer den nye array "oveni" den gamle array som derfor bliver erstattet af den nye array.
-            this.games = tempGames;
+                idx++;
+                
+            }
 
         }
 
