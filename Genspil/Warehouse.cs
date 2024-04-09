@@ -200,14 +200,14 @@ namespace Genspil
                 return (new CaseInsensitiveComparer()).Compare(((Gamegroup)x).categories[0], ((Gamegroup)y).categories[0]);
             }
         }
-        public object SearchTitle(string title)
+        public Gamegroup SearchTitle(string title)
         {
             //Tror denne er overkill fordi den jo i virkeligheden bare kan være en if statement :p
             if (Array.BinarySearch(gamegroups, title) <= 0)
             {
                 string NoResult = "";
                 Console.WriteLine("Spillet findes ikke i gamegroup");
-                return NoResult;
+                return null;
             }
             //if (gamegroups==title) 
             //Var itvivl om den skulle returnere gamegroup'ens title eller bare alle iformationer? Nedenstående er åbentlyst kun titlen, men tænker da det er federe med hele lortet.

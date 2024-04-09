@@ -26,9 +26,10 @@ namespace Genspil
             foreach (string requestTitle in titles)
             {
                 //gemmer det index i gamegroups der svarer til hvor spillet ligger
-                int gamegroupIndex= warehouse.SearchTitle(requestTitle);
+                //int gamegroupIndex= warehouse.SearchTitle(requestTitle);
+
                 //Gemmer den fundne gamegroup.
-                Gamegroup gamegroup = warehouse.gamegroups[gamegroupIndex];
+                Gamegroup gamegroup = warehouse.SearchTitle(requestTitle);
                 //tror altså ikke vi kan gøre det sådan her, vi er nødt til at ittere igennem alle indekspladser i games array or checke om de er tomm
                 if (gamegroup.games != null) 
                 {
