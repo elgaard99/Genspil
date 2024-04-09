@@ -21,11 +21,15 @@ namespace Genspil
             this.customerID = customerID;
         }
 
-        public void AvailabilityNotice(string title)
+        public void AvailabilityNotice(string title, Warehouse warehouse)
         {
             foreach (string requestTitle in titles)
             {
+<<<<<<< Updated upstream
                 Warehouse
+=======
+                
+>>>>>>> Stashed changes
             }
         }
         public Gamegroup requestedGamegroup;
