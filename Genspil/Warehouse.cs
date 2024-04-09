@@ -190,32 +190,35 @@ namespace Genspil
         {
             public int Compare(object x, object y)
             {
-                return (new CaseInsensitiveComparer()).Compare(((gamegroup)x).title, ((gamegroup)y).title);
+                return (new CaseInsensitiveComparer()).Compare(((Gamegroup)x).title, ((Gamegroup)y).title);
             }
         }
         public class CompareCat : IComparer
         {
             public int Compare(object x, object y)
             {
-                return (new CaseInsensitiveComparer()).Compare(((gamegroup)x).categories[0], ((gamegroup)y).categories[0]);
+                return (new CaseInsensitiveComparer()).Compare(((Gamegroup)x).categories[0], ((Gamegroup)y).categories[0]);
             }
         }
-        public string SearchTitle(string title)
+        public int SearchTitle(string title)
         {
             //Tror denne er overkill fordi den jo i virkeligheden bare kan være en if statement :p
             if (Array.BinarySearch(gamegroups, title) <= 0)
             {
-                return Console.WriteLine("Spillet findes ikke i gamegroup");
+                int noResult = -1;
+                Console.WriteLine("Spillet findes ikke");
+                return noResult;
             }
             //if (gamegroups==title) 
             //Var itvivl om den skulle returnere gamegroup'ens title eller bare alle iformationer? Nedenstående er åbentlyst kun titlen, men tænker da det er federe med hele lortet.
-            else return gamegroups[Array.BinarySearch(gamegroups, title)].Title;
+            else return Array.BinarySearch(gamegroups, title);
         }
 
         public string[] SearchCategories(string category)
         {
+            string[] searchResultsCat = new string[10];
             int i = 0;
-            foreach (gamegroup group in gamegroups)
+            foreach (Gamegroup group in gamegroups)
             {
                 if (Array.BinarySearch(group.categories, category) >= 0)
                 {
@@ -229,7 +232,8 @@ namespace Genspil
         public void SearchNumbPlayers(int min, int max)
         {
             int i = 0;
-            foreach (gamegroup group in games)
+
+            foreach (Gamegroup group in games)
             {
                 //Da array altid er 2 ingen grund til brug af binarysearch???
                 if (group.numbPlayers[0] <= min)
