@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Genspil
 {
-    public class Request
+    internal class Request
     {
         public string[] titles; //Lavet til en array hvis de nu skulle kunne øsnke flere.
 
@@ -21,14 +21,26 @@ namespace Genspil
             this.customerID = customerID;
         }
 
-        public void AvailabilityNotice(string title)
+        public void AvailabilityNotice(string title, Warehouse warehouse)
         {
             foreach (string requestTitle in titles)
             {
-                warehouse
+                //gemmer det index i gamegroups der svarer til hvor spillet ligger
+                int gamegroupIndex= warehouse.SearchTitle(requestTitle);
+                //Gemmer den fundne gamegroup.
+                Gamegroup gamegroup = warehouse.gamegroups[gamegroupIndex];
+                //tror altså ikke vi kan gøre det sådan her, vi er nødt til at ittere igennem alle indekspladser i games array or checke om de er tomm
+                if (gamegroup.games != null) 
+                {
+                    Console.WriteLine(gamegroup.title + " er på lager.");
+                    Console.WriteLine("Der kan vælges mellem følgende spil:");
+                    gamegroup.PrintGamegroup();
+                }
+        }
+                    
             }
         }
-        public Gamegroup requestedGamegroup;
+        //public Gamegroup requestedGamegroup;
 
         // hvordan bruges ReferenceNumbers?
         /*
