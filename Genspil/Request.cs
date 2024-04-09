@@ -25,10 +25,10 @@ namespace Genspil
         {
             foreach (string requestTitle in titles)
             {
-                warehouse
+                //warehouse
             }
         }
-        public Gamegroup requestedGamegroup;
+        //public Gamegroup requestedGamegroup;
 
         // hvordan bruges ReferenceNumbers?
         /*
