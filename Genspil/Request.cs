@@ -1,13 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Genspil
 {
-    internal class Request
+    public class Request
     {
+        public string[] titles; //Lavet til en array hvis de nu skulle kunne øsnke flere.
+
+        public int customerID;
+
+
+        public Request(string[] titles, int customerID) 
+        {
+            string[] tempTitles = new string[titles.Length];
+            this.titles = tempTitles;
+            this.customerID = customerID;
+        }
+
+        public void AvailabilityNotice(string title)
+        {
+            foreach (string requestTitle in titles)
+            {
+                Warehouse
+            }
+        }
         public Gamegroup requestedGamegroup;
 
         // hvordan bruges ReferenceNumbers?
