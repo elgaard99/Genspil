@@ -11,15 +11,17 @@ namespace Genspil
     {
         public string[] titles; //Lavet til en array hvis de nu skulle kunne øsnke flere.
 
-        public int customerID;
+        //public int customerID;
 
 
-        public Request(string[] titles, int customerID) 
+        public Request(string[] requestTitles) 
         {
-            string[] tempTitles = new string[titles.Length];
-            this.titles = tempTitles;
-            this.titles = titles;
-            this.customerID = customerID;
+            this.titles = requestTitles;
+        }
+        public Request(string requestTitle)
+        {
+            titles = new string[1];
+            titles[0] = requestTitle;
         }
 
         public void AvailabilityNotice(Gamegroup[] gamegroups, Warehouse warehouse)

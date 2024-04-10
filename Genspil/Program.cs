@@ -19,7 +19,9 @@
             Warehouse warehouse = new Warehouse(gamegroups);
             DataHandler handler = new DataHandler("gamegroupData.txt");
             string[] requestTitles = { "Matador", "UNO", "Catan", "Kalaha" };
-            Request request = new Request(requestTitles, 1234);
+            string requestTitles2 = "Matador";
+            Request request = new Request(requestTitles);
+            Request request2 = new Request(requestTitles2);
             Game One = new Game("Matador", "A", 1);
             Game Two = new Game("Matador", "B", 2);
             gamegroups[0].games[0] = One;
@@ -35,8 +37,13 @@
                         warehouse1.PrintWarehouse();
             */
             //warehouse.SearchTitle(gamegroups, "Matador");
-            request.AvailabilityNotice(gamegroups, warehouse);
-
+            //request.AvailabilityNotice(gamegroups, warehouse);
+            Customer customer = new Customer();
+            customer.customerNumber = 1234;
+            //customer.requests = new[] { request };
+            customer.MakeRequest(request);
+            customer.MakeRequest(request2);
+            Console.WriteLine(customer.ToString());
             Console.ReadLine();
 
             /*
