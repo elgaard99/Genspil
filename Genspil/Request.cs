@@ -37,10 +37,10 @@ namespace Genspil
                     Console.WriteLine("Der kan vælges mellem følgende spil:");
                     gamegroup.PrintGamegroup();
                 }
-        }
-                    
             }
+                    
         }
+    }
         //public Gamegroup requestedGamegroup;
 
         // hvordan bruges ReferenceNumbers?
@@ -110,7 +110,7 @@ namespace Genspil
             
             
         }
-        */
         
-    }
+        
+    }*/
 }
