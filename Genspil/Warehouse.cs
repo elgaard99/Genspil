@@ -12,7 +12,7 @@ namespace Genspil
 {
     internal class Warehouse
     {
-        public Gamegroup[] gamegroups = [];
+        public Gamegroup[] gamegroups;
 
         public Warehouse(Gamegroup[] gamegroups) 
         { 
@@ -202,10 +202,18 @@ namespace Genspil
                 return (new CaseInsensitiveComparer()).Compare(((Gamegroup)x).categories[0], ((Gamegroup)y).categories[0]);
             }
         }
-        public Gamegroup SearchTitle(string title)
+        public Gamegroup SearchTitle(Gamegroup[] gamegroups, string title)
         {
+            Array.Sort(gamegroups, new CompareTitle());
+            string[] gamegroupsTitle = new string[gamegroups.Length];
+            int i = 0;
+            foreach (Gamegroup gamegroup in gamegroups)
+            {
+                gamegroupsTitle[i] = gamegroup.title;
+                i++;
+            }
             //Tror denne er overkill fordi den jo i virkeligheden bare kan være en if statement :p
-            if (Array.BinarySearch(gamegroups, title) <= 0)
+            if (Array.BinarySearch(gamegroupsTitle, title) <= 0)
             {
                 string NoResult = "";
                 Console.WriteLine("Spillet findes ikke i gamegroup");
@@ -213,7 +221,7 @@ namespace Genspil
             }
             //if (gamegroups==title) 
             //Var itvivl om den skulle returnere gamegroup'ens title eller bare alle iformationer? Nedenstående er åbentlyst kun titlen, men tænker da det er federe med hele lortet.
-            else return gamegroups[Array.BinarySearch(gamegroups, title)];
+            else return gamegroups[Array.BinarySearch(gamegroupsTitle, title)];
         }
 
         public string[] SearchCategories(string category)

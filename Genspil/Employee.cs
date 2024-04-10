@@ -100,7 +100,7 @@ namespace Genspil
                 { 
 
                 }*/
-                Game newGame = new Game(title, condition, gamegroup.games);
+                Game newGame = new Game(title, condition, 1);
                 //Kunne ikke finde ud af hvordan metoden Create Game skulle kaldes her så skrev den bare ind herunder
 
 

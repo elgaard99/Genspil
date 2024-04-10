@@ -6,7 +6,7 @@
         {
 
             // I skal indsætte stien til hvor gamegroupData.txt gemmes
-            Environment.CurrentDirectory = "C:\\Visual Studio 2022\\Source\\Repos\\Genspil\\Genspil";
+            Environment.CurrentDirectory = "C:\\Users\\dscha\\source\\repos\\Genspil\\Genspil";
 
             Gamegroup[] gamegroups =
             {
@@ -18,13 +18,24 @@
 
             Warehouse warehouse = new Warehouse(gamegroups);
             DataHandler handler = new DataHandler("gamegroupData.txt");
+            string[] requestTitles = { "Matador", "UNO", "Catan", "Kalaha" };
+            Request request = new Request(requestTitles, 1234);
+            Game One = new Game("Matador", "A", 1);
+            Game Two = new Game("Matador", "B", 2);
+            gamegroups[0].games[0] = One;
+            gamegroups[1].games[2] = Two;
+            Game Three = new Game("Uno", "C", 1);
+            gamegroups[2].games[1] = Three;
+            /*
+                        handler.Save(warehouse.gamegroups);
+                        Gamegroup[] gamegroups_ = handler.LoadGamegroups();
 
-            handler.Save(warehouse.gamegroups);
-            Gamegroup[] gamegroups_ = handler.LoadGamegroups();
+                        Warehouse warehouse1 = new Warehouse(gamegroups_);
 
-            Warehouse warehouse1 = new Warehouse(gamegroups_);
-            
-            warehouse1.PrintWarehouse();
+                        warehouse1.PrintWarehouse();
+            */
+            //warehouse.SearchTitle(gamegroups, "Matador");
+            request.AvailabilityNotice(gamegroups, warehouse);
 
             Console.ReadLine();
 

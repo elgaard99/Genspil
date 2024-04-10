@@ -18,25 +18,28 @@ namespace Genspil
         {
             string[] tempTitles = new string[titles.Length];
             this.titles = tempTitles;
+            this.titles = titles;
             this.customerID = customerID;
         }
 
-        public void AvailabilityNotice(string title, Warehouse warehouse)
+        public void AvailabilityNotice(Gamegroup[] gamegroups, Warehouse warehouse)
         {
-            foreach (string requestTitle in titles)
+            foreach (string requestTitle in this.titles)
             {
                 //gemmer det index i gamegroups der svarer til hvor spillet ligger
-                //int gamegroupIndex= warehouse.SearchTitle(requestTitle);
+                //int gamegroupIndex= warehouse.SearchTitle(warehouse.gamegroups, requestTitle);
 
                 //Gemmer den fundne gamegroup.
-                Gamegroup gamegroup = warehouse.SearchTitle(requestTitle);
+                Gamegroup gamegroup = warehouse.SearchTitle(gamegroups, requestTitle);
                 //tror altså ikke vi kan gøre det sådan her, vi er nødt til at ittere igennem alle indekspladser i games array or checke om de er tomm
-                if (gamegroup.games != null) 
+
+                if (gamegroup != null)
                 {
                     Console.WriteLine(gamegroup.title + " er på lager.");
                     Console.WriteLine("Der kan vælges mellem følgende spil:");
                     gamegroup.PrintGamegroup();
                 }
+                else Console.WriteLine("Spillet " + requestTitle + " er ikke på lager");
             }
                     
         }

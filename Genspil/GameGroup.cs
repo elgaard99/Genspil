@@ -17,7 +17,7 @@ namespace Genspil
         public string[] categories = new string[5]; // maks 5 kategorier
         public float price;
         public float[] conditionPrice = new float[4];
-        public Game[] games = [];
+        public Game[] games;
 
         public Gamegroup(string title, int[] numbPlayers, int[] ageRecommended, string[] categories, float price, float[] conditionPrice)
         {
@@ -27,7 +27,7 @@ namespace Genspil
             this.categories = categories;
             this.price = price;
             this.conditionPrice = conditionPrice;
-            Game[] games = new Game[999];
+            this.games = new Game[999];
         }
 
         public void PrintGamegroup()
