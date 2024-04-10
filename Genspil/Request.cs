@@ -11,36 +11,41 @@ namespace Genspil
     {
         public string[] titles; //Lavet til en array hvis de nu skulle kunne øsnke flere.
 
-        public int customerID;
+        //public int customerID;
 
 
-        public Request(string[] titles, int customerID) 
+        public Request(string[] requestTitles) 
         {
-            string[] tempTitles = new string[titles.Length];
-            this.titles = tempTitles;
-            this.customerID = customerID;
+            this.titles = requestTitles;
         }
-
-        public void AvailabilityNotice(string title, Warehouse warehouse)
+        public Request(string requestTitle)
         {
-            foreach (string requestTitle in titles)
+            titles = new string[1];
+            titles[0] = requestTitle;
+        }
+        //Har lidt ombestemt mig med denne metode og læner mig længere op af hvad Sanders allerede har sagt. Tænkte den var god at kalde hver gang der blev AddGame(), hvor den ittere igennem alle requests i alle customers, men ved ikke helt??
+        /*public void AvailabilityNotice(Gamegroup[] gamegroups, Warehouse warehouse)
+        {
+            foreach (string requestTitle in this.titles)
             {
                 //gemmer det index i gamegroups der svarer til hvor spillet ligger
-                //int gamegroupIndex= warehouse.SearchTitle(requestTitle);
+                //int gamegroupIndex= warehouse.SearchTitle(warehouse.gamegroups, requestTitle);
 
                 //Gemmer den fundne gamegroup.
-                Gamegroup gamegroup = warehouse.SearchTitle(requestTitle);
+                Gamegroup gamegroup = warehouse.SearchTitle(gamegroups, requestTitle);
                 //tror altså ikke vi kan gøre det sådan her, vi er nødt til at ittere igennem alle indekspladser i games array or checke om de er tomm
-                if (gamegroup.games != null) 
+
+                if (gamegroup != null && gamegroup.games[0] != null)
                 {
                     Console.WriteLine(gamegroup.title + " er på lager.");
                     Console.WriteLine("Der kan vælges mellem følgende spil:");
                     gamegroup.PrintGamegroup();
                 }
-        }
-                    
+                else Console.WriteLine("Spillet " + requestTitle + " er ikke på lager");
             }
-        }
+                    
+        }*/
+    }
         //public Gamegroup requestedGamegroup;
 
         // hvordan bruges ReferenceNumbers?
@@ -110,7 +115,7 @@ namespace Genspil
             
             
         }
-        */
         
-    }
+        
+    }*/
 }

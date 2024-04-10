@@ -62,7 +62,7 @@ namespace Genspil
                 
                 // gamegruppen loader pt ikke lagerede games, men instantialiseres med en tom Game array.
                 // Hvis der er en som implementere at loade Games, go-ahead!
-                Game[] games = [];
+                //Game[] games = [];
 
                 Gamegroup gamegroup = new Gamegroup(title, numbPlayers, ageRecommended, categories, price, conditionPrice);
 
