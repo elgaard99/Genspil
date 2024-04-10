@@ -25,9 +25,9 @@
             Game One = new Game("Matador", "A", 1);
             Game Two = new Game("Matador", "B", 2);
             gamegroups[0].games[0] = One;
-            gamegroups[1].games[2] = Two;
+            gamegroups[0].games[1] = Two;
             Game Three = new Game("Uno", "C", 1);
-            gamegroups[2].games[1] = Three;
+            gamegroups[1].games[0] = Three;
             /*
                         handler.Save(warehouse.gamegroups);
                         Gamegroup[] gamegroups_ = handler.LoadGamegroups();
@@ -43,6 +43,7 @@
             //customer.requests = new[] { request };
             customer.MakeRequest(request);
             customer.MakeRequest(request2);
+            customer.AvailabilityNotice(warehouse);
             Console.WriteLine(customer.ToString());
             Console.ReadLine();
 

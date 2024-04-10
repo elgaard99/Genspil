@@ -23,7 +23,7 @@ namespace Genspil
             titles = new string[1];
             titles[0] = requestTitle;
         }
-
+        //Har lidt ombestemt mig med denne metode og læner mig længere op af hvad Sanders allerede har sagt. Tænkte den var god at kalde hver gang der blev AddGame(), hvor den ittere igennem alle requests i alle customers, men ved ikke helt??
         public void AvailabilityNotice(Gamegroup[] gamegroups, Warehouse warehouse)
         {
             foreach (string requestTitle in this.titles)
@@ -35,7 +35,7 @@ namespace Genspil
                 Gamegroup gamegroup = warehouse.SearchTitle(gamegroups, requestTitle);
                 //tror altså ikke vi kan gøre det sådan her, vi er nødt til at ittere igennem alle indekspladser i games array or checke om de er tomm
 
-                if (gamegroup != null)
+                if (gamegroup != null && gamegroup.games[0] != null)
                 {
                     Console.WriteLine(gamegroup.title + " er på lager.");
                     Console.WriteLine("Der kan vælges mellem følgende spil:");
