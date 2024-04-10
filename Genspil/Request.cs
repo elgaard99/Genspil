@@ -24,7 +24,7 @@ namespace Genspil
             titles[0] = requestTitle;
         }
         //Har lidt ombestemt mig med denne metode og læner mig længere op af hvad Sanders allerede har sagt. Tænkte den var god at kalde hver gang der blev AddGame(), hvor den ittere igennem alle requests i alle customers, men ved ikke helt??
-        public void AvailabilityNotice(Gamegroup[] gamegroups, Warehouse warehouse)
+        /*public void AvailabilityNotice(Gamegroup[] gamegroups, Warehouse warehouse)
         {
             foreach (string requestTitle in this.titles)
             {
@@ -44,7 +44,7 @@ namespace Genspil
                 else Console.WriteLine("Spillet " + requestTitle + " er ikke på lager");
             }
                     
-        }
+        }*/
     }
         //public Gamegroup requestedGamegroup;
 
