@@ -87,9 +87,7 @@ namespace Genspil
                 {
 
                     case "Søg efter spil på lageret":
-                        Console.WriteLine("Du vil søge efter et spil");
-                        Console.Write("\n\n(Tryk menupunkt eller 0 for at afslutte) ");
-                        Console.ReadLine();
+                        SearchWarehouse(warehouse);
                         break;
 
                     case "Print lagerliste":
@@ -105,9 +103,105 @@ namespace Genspil
                     case "Rediger Lager":
                         EditWarehouse(warehouse);
                         break;
+                
                 }
 
             }
+
+        }
+
+        void SearchWarehouse(Warehouse warehouse) 
+        {
+            Menu subMenu = new Menu
+                (
+                "Søg efter spil på lageret",
+                new[]
+                {
+                    "Søg efter title",
+                    "Søg efter kategori",
+                    "Søg efter antal spillere",
+                    "Søg efter alder",
+                    "Søg på flere kriterier"
+                }
+            );
+
+            while (true)
+            {
+                Console.Clear();
+
+                int selectedMenu = subMenu.SelectMenuItem();
+
+                if (selectedMenu == -1)
+                    break;
+
+                Console.Clear();
+
+                switch (subMenu.menuItems[selectedMenu])
+                {
+                    case "Søg efter title":
+                        SearchTitle();
+                        break;
+
+                    case "Søg efter kategori":
+                        SearchCategori();
+                        break;
+
+                    case "Søg efter antal spillere":
+                        SearchNumberOfPlayers();
+                        break;
+
+                    case "Søg efter alder":
+                        //warehouse.SearchAgeRecommended();
+                        break;
+
+                    case "Søg på flere kriterier":
+                        //warehouse.Search()
+                        break;
+
+                }
+
+                void SearchTitle()
+                {
+                    Console.Write("Titel på spillet: ");
+                    Gamegroup[] gamegroups = warehouse.gamegroups;
+                    Gamegroup group = warehouse.SearchTitle(gamegroups, Console.ReadLine());
+                    
+                    if (group != null)
+                        if (!group.games.All(x => x==null))
+                            group.PrintGamegroup();
+                        
+                        else
+                            Console.WriteLine("Ingen spil på lager med titlen {0}", group.title);
+
+                    Console.Write("(Tryk enter for at komme tilbage)");
+                    Console.ReadLine();
+                
+                }
+
+                void SearchCategori()
+                {
+                    Console.Write("Kategori: ");
+
+                    foreach (string s in warehouse.SearchCategories(Console.ReadLine()))
+                        Console.WriteLine(s);
+
+                    Console.Write("\n(Tryk enter for at komme tilbage)");
+                    Console.ReadLine();
+
+                }
+
+                void SearchNumberOfPlayers()
+                {
+                    Console.Write("Antal spillere: ");
+                    int numberOfPlayers = int.Parse(Console.ReadLine());
+                    warehouse.SearchNumbPlayers(numberOfPlayers, numberOfPlayers);
+
+                    Console.Write("\n(Tryk enter for at komme tilbage)");
+                    Console.ReadLine();
+                }
+
+            }
+
         }
 
         void CustomerMenu(Customer[] customers)
@@ -173,7 +267,5 @@ namespace Genspil
         }
 
     }
-
-    
 
 }
