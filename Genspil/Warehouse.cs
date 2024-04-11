@@ -306,7 +306,7 @@ namespace Genspil
                 }
                 else
                 {
-                    string[] noResult = { "Intet", " resultat", "af søgning" };
+                    string[] noResult = { "Intet", " resultat ", "af søgning" };
                     return noResult;
                 }
             }
@@ -322,7 +322,7 @@ namespace Genspil
                 if (group.numbPlayers[0] >= min && group.numbPlayers[0] >= max)
                 {
                     searchResultsNumbPlayers[i] = group.title;
-                    Console.WriteLine(searchResultsNumbPlayers[i] + " matcher kriteret" + ". Det har rummer " + group.numbPlayers[0] + "-" + group.numbPlayers[1] + " spillere.");
+                    Console.WriteLine(searchResultsNumbPlayers[i] + " matcher kriteret" + ". Det rummer " + group.numbPlayers[0] + "-" + group.numbPlayers[1] + " spillere.");
                     i++;
                 }
             }

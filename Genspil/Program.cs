@@ -16,8 +16,9 @@
                 new Gamegroup("Kalaha", new[] { 2, 6 }, new[] { 10, 12 }, new[] { "kugler", "strategi" }, 199.95F, new[] {1F, 0.9F, 0.8F, 0.7F })
             };
 
-            Warehouse warehouse = new Warehouse(gamegroups);
-            //DataHandler handler = new DataHandler("gamegroupData.txt");
+            //Warehouse warehouse = new Warehouse(gamegroups);
+            DataHandler handler = new DataHandler("gamegroupData.txt");
+            Warehouse warehouse = new Warehouse( handler.LoadGamegroups() );
             //string[] requestTitles = { "Matador", "UNO", "Catan", "Kalaha" };
             //string requestTitles2 = "Matador";
             //Request request = new Request(requestTitles);
@@ -48,9 +49,9 @@
 
 
             Menu menu = new Menu();
-            Customer[] c = new Customer[] { customer };
+            Customer[] c = new Customer[1];
+
             menu.MainMenu(warehouse, c);
-            warehouse.CreateGamegroup();
 
             Console.ReadLine();
 
