@@ -6,7 +6,7 @@
         {
 
             // I skal indsætte stien til hvor gamegroupData.txt gemmes
-            Environment.CurrentDirectory = "C:\\Visual Studio 2022\\Source\\Repos\\Genspil\\Genspil";
+            Environment.CurrentDirectory = "C:\\Users\\dscha\\source\\repos\\Genspil\\Genspil\\";
 
             Gamegroup[] gamegroups =
             {
@@ -38,8 +38,8 @@
             //*/
             ////warehouse.SearchTitle(gamegroups, "Matador");
             ////request.AvailabilityNotice(gamegroups, warehouse);
-            //Customer customer = new Customer();
-            //customer.customerNumber = 1234;
+            Customer customer = new Customer();
+            customer.customerNumber = 1234;
             ////customer.requests = new[] { request };
             //customer.MakeRequest(request);
             //customer.MakeRequest(request2);
@@ -48,8 +48,9 @@
 
 
             Menu menu = new Menu();
-
-            menu.MainMenu(warehouse);
+            Customer[] c = new Customer[] { customer };
+            menu.MainMenu(warehouse, c);
+            warehouse.CreateGamegroup();
 
             Console.ReadLine();
 

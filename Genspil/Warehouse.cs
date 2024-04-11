@@ -126,15 +126,23 @@ namespace Genspil
 
             //-.-.-.-.-.- SKAL DE INDTASTE DISCOUNTEN SELV? HVIS JA ER KODEN HER
             float[] conditionPrice = new float[4];
-            foreach (int condition in conditionPrice)
+
+            for (int i = 0; i<4 ; i++)
             {
-                if (condition == 0) Console.WriteLine("Indtast % discount på tilstand A:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
-                if (condition == 1) Console.WriteLine("Indtast discount på tilstand B:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
-                if (condition == 2) Console.WriteLine("Indtast discount på tilstand C:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
-                if (condition == 3) Console.WriteLine("Indtast discount på tilstand D:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
-                //if (condition == 4) Console.WriteLine("Indtast discount på tilstand E:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
-                //if (condition == 5) Console.WriteLine("Indtast discount på tilstand F:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
+                string[] conditions = { "A", "B", "C", "D" };
+                Console.WriteLine("Indtast % discount på tilstand " + conditions[i] + ":");
+                conditionPrice[i] = (1-(float.Parse(Console.ReadLine())/100)) * price;
+                Console.WriteLine(conditionPrice[i]);
             }
+            //foreach (int condition in conditionPrice)
+            //{
+            //    if (condition == 0) { Console.WriteLine("Indtast % discount på tilstand A:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price; }
+            //    if (condition == 1) { Console.WriteLine("Indtast discount på tilstand B:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price; }
+            //    if (condition == 2) Console.WriteLine("Indtast discount på tilstand C:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
+            //    if (condition == 3) Console.WriteLine("Indtast discount på tilstand D:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
+            //    //if (condition == 4) Console.WriteLine("Indtast discount på tilstand E:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
+            //    //if (condition == 5) Console.WriteLine("Indtast discount på tilstand F:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
+            //}
 
             Gamegroup newGameGroup = new Gamegroup(title, numbPlayers, ageRecommended, categories, price, conditionPrice);
 
@@ -144,7 +152,7 @@ namespace Genspil
                 tempGameGroups[i] = gamegroups[i];
             }
 
-            tempGameGroups[gamegroups.Length + 1] = newGameGroup;
+            tempGameGroups[gamegroups.Length] = newGameGroup;
 
             gamegroups = tempGameGroups;
             Array.Sort(gamegroups, new CompareTitle());
