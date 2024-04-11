@@ -48,8 +48,9 @@
 
 
             Menu menu = new Menu();
+            Customer[] c = new Customer[1];
 
-            menu.MainMenu(warehouse);
+            menu.MainMenu(warehouse, c);
 
             Console.ReadLine();
 
