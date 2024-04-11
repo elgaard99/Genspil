@@ -64,5 +64,56 @@ namespace Genspil
                 }
             }
         }
+
+        public void editCustomer(int choice)
+        {
+            switch (choice) 
+            {
+                case 1:
+                    Console.WriteLine("Indtast et nyt fornavn: ");
+                    this.firstName = Console.ReadLine();
+                    break;
+                case 2:
+                    Console.WriteLine("Indtast et nyt efternavn: ");
+                    this.lastName = Console.ReadLine();
+                    break;
+                case 3:
+                    Console.WriteLine("Indtast et nyt telefon nummer: ");
+                    this.phoneNumber = Convert.ToInt32(Console.ReadLine());
+                    break;
+                case 4:
+                    Console.WriteLine("Indtast en nyt email: ");
+                    this.email = Console.ReadLine();
+                    break;
+            }
+        }
+        public void editRequest(int choice)
+        {
+            Console.WriteLine("Vælg hvilket request du vil redigere:");
+            foreach (Request request in requests)
+            {
+                int i = 1;
+                Console.WriteLine(i + ":");
+                foreach (string title in request.titles)
+                {
+                    Console.WriteLine("-" + title);
+                }
+
+            }
+            Console.WriteLine("Vælg et tal for den efterspørgsel der skal redigeres");
+            Request requestChoice = requests[Convert.ToInt32(Console.ReadLine())];
+
+            Console.WriteLine("Vælg hvilken titel du vil redigere:");
+            int j = 1;
+            foreach (string title in requestChoice.titles)
+            {
+                Console.WriteLine( j + title);
+                j++;
+            }
+            Console.WriteLine("Vælg et tal for den titel der skal redigeres");
+            string titleChoice = requestChoice.titles[Convert.ToInt32(Console.ReadLine())];
+            Console.WriteLine("Indtast efterspørgsel:");
+           
+        }
     }
 }

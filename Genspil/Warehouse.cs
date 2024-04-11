@@ -294,7 +294,7 @@ namespace Genspil
         public string[] SearchCategories(string category)
         {
             Array.Sort(gamegroups, new CompareCat());
-            string[] searchResultsCat= new string[5];
+            string[] searchResultsCat= new string[gamegroups.Length];
             int i = 0;
             foreach (Gamegroup group in gamegroups)
             {
@@ -306,7 +306,7 @@ namespace Genspil
                 }
                 else
                 {
-                    string[] noResult = { "Intet", " resultat", "af søgning" };
+                    string[] noResult = { "Intet", " resultat", " af søgning" };
                     return noResult;
                 }
             }
