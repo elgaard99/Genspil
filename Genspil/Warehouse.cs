@@ -293,6 +293,7 @@ namespace Genspil
 
         public string[] SearchCategories(string category)
         {
+            Array.Sort(gamegroups, new CompareCat());
             string[] searchResultsCat= new string[5];
             int i = 0;
             foreach (Gamegroup group in gamegroups)
