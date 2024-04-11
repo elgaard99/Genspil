@@ -16,7 +16,7 @@
                 new Gamegroup("Kalaha", new[] { 2, 6 }, new[] { 10, 12 }, new[] { "kugler", "strategi" }, 199.95F, new[] {1F, 0.9F, 0.8F, 0.7F })
             };
 
-            //Warehouse warehouse = new Warehouse(gamegroups);
+            Warehouse warehouse = new Warehouse(gamegroups);
             //DataHandler handler = new DataHandler("gamegroupData.txt");
             //string[] requestTitles = { "Matador", "UNO", "Catan", "Kalaha" };
             //string requestTitles2 = "Matador";
@@ -47,11 +47,9 @@
             //Console.WriteLine(customer.ToString());
 
 
-            Menu mainMenu = new Menu("Vores Hovedmenu");
-            Menu searchGameMenu = new Menu("Søg efter et spil på lageret");
-            Menu costumerMenu = new Menu("Kunder");
+            Menu menu = new Menu();
 
-            mainMenu.ShowMenu();
+            menu.MainMenu(warehouse);
 
             Console.ReadLine();
 

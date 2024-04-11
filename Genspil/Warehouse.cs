@@ -24,8 +24,8 @@ namespace Genspil
             //Bør vi måske i virkeligheden ændre dette til at tage udgangspunkt i data filen??
             Console.Clear();
 
-            Console.WriteLine("Hvordan skal listen sorteres? Tast t for titel eller g for genre");
-            string sorting = "t";//Console.ReadLine();
+            Console.Write("Hvordan skal listen sorteres? Tast t for titel eller g for genre: ");
+            string sorting = Console.ReadLine();
 
             // sortér gameGroups efter enten title eller genre
             string[] arrKeys = new string[gamegroups.Length];
@@ -50,6 +50,10 @@ namespace Genspil
                 }
                     
             }
+
+            Console.Write("Tast enter for at komme tilbage: ");
+            Console.ReadLine();
+
         }
 
         public void LoadGamegroups(DataHandler handler)
@@ -149,10 +153,14 @@ namespace Genspil
 
         public void RemoveGamegroup()
         {
+            Console.Clear();
+
             Console.WriteLine("Hvilken gamegroup ønsker du at slette?");
 
             for (int i = 0; i < gamegroups.Length; i++)
                 Console.WriteLine($"\tTast {i +1}: {gamegroups[i].title}");
+
+            Console.Write("\n\n(Tryk menupunkt eller 0 for at afslutte) ");
 
             int gamegroupIndex = 0;
             while (true)
@@ -160,33 +168,84 @@ namespace Genspil
 
                 if (int.TryParse(Console.ReadLine(), out gamegroupIndex))
                 {
+
                     gamegroupIndex--;
-                    if (gamegroupIndex >= 0 && gamegroupIndex < gamegroups.Length)
+
+                    if (gamegroupIndex >= -1 && gamegroupIndex < gamegroups.Length)
                         break;
+
                 }
 
                 Console.WriteLine("Du skal indtaste et gyldigt tal.");
 
             }
 
-            // vi kan ikke genbruge den "oprindlige" array af objekter , da vi ikke kan ændre længden på en array. Så derfor laver jeg en midlertidig arra der er 1 indeks længere end originalen og gemmer objektet i den sidste
-            Gamegroup[] tempGamegroups = new Gamegroup[this.gamegroups.Length - 1];
-
-            //Indsætter alle værdierne fra games array i den nye tempGames array
-            for (int i = 0; i < this.gamegroups.Length - 1; i++)
+            if (gamegroupIndex != -1)
             {
-                if (i < gamegroupIndex)
-                    tempGamegroups[i] = this.gamegroups[i];
+                // vi kan ikke genbruge den "oprindlige" array af objekter , da vi ikke kan ændre længden på en array. Så derfor laver jeg en midlertidig arra der er 1 indeks længere end originalen og gemmer objektet i den sidste
+                Gamegroup[] tempGamegroups = new Gamegroup[this.gamegroups.Length - 1];
 
-                else
-                    tempGamegroups[i] = this.gamegroups[i + 1];
+                //Indsætter alle værdierne fra games array i den nye tempGames array
+                for (int i = 0; i < this.gamegroups.Length - 1; i++)
+                {
+                    if (i < gamegroupIndex)
+                        tempGamegroups[i] = this.gamegroups[i];
+
+                    else
+                        tempGamegroups[i] = this.gamegroups[i + 1];
+
+                }
+
+                //Gemmer den nye array "oveni" den gamle array som derfor bliver erstattet af den nye array.
+                this.gamegroups = tempGamegroups;
+                Array.Sort(gamegroups, new CompareTitle());
+            }
+        }
+
+        public void EditGames()
+        {
+
+            Console.Clear();
+
+            Console.WriteLine("Hvilken titel vil du tilføje/ slette et spil i?");
+            for (int i = 0; i < gamegroups.Length; i++)
+                Console.WriteLine($"\tTast {i + 1}: {gamegroups[i].title}");
+
+            Console.Write("\n\n(Tryk menupunkt eller 0 for at afslutte)");
+
+            int chooseGamegroup;
+            while (true)
+            {
+
+                if (int.TryParse(Console.ReadLine(), out chooseGamegroup))
+                    break;
+
+                Console.WriteLine("Du skal angive et tal");
 
             }
 
-            //Gemmer den nye array "oveni" den gamle array som derfor bliver erstattet af den nye array.
-            this.gamegroups = tempGamegroups;
-            Array.Sort(gamegroups, new CompareTitle());
+            if (chooseGamegroup != 0)
+            {
 
+                Console.WriteLine("Hvad vil du gerne?\n\tTast 1: Tilføje\n\tTast 2: Slette\n");
+
+                int chooseWhatToDo;
+                while (true)
+                {
+
+                    if (int.TryParse(Console.ReadLine(), out chooseWhatToDo))
+                        break;
+
+                    Console.WriteLine("Du skal angive et tal");
+
+                }
+
+                if (chooseWhatToDo == 1)
+                    gamegroups[chooseGamegroup - 1].AddGame();
+
+                else if (chooseWhatToDo == 2)
+                    gamegroups[chooseGamegroup - 1].RemoveGame();
+            }
         }
         public class CompareTitle : IComparer
         {

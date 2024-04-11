@@ -38,6 +38,7 @@ namespace Genspil
                 if (game != null)
                     Console.WriteLine($"\tReferencenummer: \"{game.ReferenceNumber}\"");
             }
+
         }
 
         public void AddGame()
@@ -82,7 +83,7 @@ namespace Genspil
             foreach (Game game in this.games)
                 Console.WriteLine("\t" + game.ReferenceNumber);
 
-            Console.Write("Indtast tallet i referencenummeret: ");
+            Console.Write("\n\n(Tryk menupunkt eller 0 for at afslutte) ");
 
             int idxOfGame = -1;
             while (true)
