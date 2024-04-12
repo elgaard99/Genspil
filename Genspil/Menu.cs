@@ -183,12 +183,7 @@ namespace Genspil
                     Console.Write("Kategori: ");
 
                     Gamegroup[] gamegroups = warehouse.SearchCategories(Console.ReadLine());
-                    if (gamegroups != null)
-                        foreach (Gamegroup gamegroup in gamegroups)
-                        {
-                            foreach (string cat in gamegroup.categories)
-                                if (cat != null) Console.WriteLine(cat);
-                        }
+                    
 
                     Console.Write("\n(Tryk enter for at komme tilbage)");
                     Console.ReadLine();
@@ -199,7 +194,7 @@ namespace Genspil
                 {
                     Console.Write("Antal spillere: ");
                     int numberOfPlayers = int.Parse(Console.ReadLine());
-                    warehouse.SearchNumbPlayers(numberOfPlayers, numberOfPlayers);
+                    warehouse.SearchNumbPlayers(numberOfPlayers);
 
                     Console.Write("\n(Tryk enter for at komme tilbage)");
                     Console.ReadLine();

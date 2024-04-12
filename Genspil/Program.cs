@@ -6,7 +6,7 @@
         {
 
             // I skal indsætte stien til hvor gamegroupData.txt gemmes
-            Environment.CurrentDirectory = "C:\\Users\\dscha\\source\\repos\\Genspil\\Genspil\\";
+            Environment.CurrentDirectory = "C:\\Users\\danie\\source\\repos\\GenspilNy\\Genspil\\";
 
             Gamegroup[] gamegroups =
             {
@@ -55,7 +55,7 @@
             //Console.WriteLine(customer.ToString());
             CustomerDatabase customerdb = new CustomerDatabase();
             customerdb.AddCustomer(customer);
-            customer.EditCustomer(1);
+            //customer.EditCustomer(1);
 
             //Menu menu = new Menu();
             Customer[] c = new Customer[] { customer };

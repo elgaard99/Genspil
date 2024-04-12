@@ -284,7 +284,7 @@ namespace Genspil
                 i++;
             }
             //Tror denne er overkill fordi den jo i virkeligheden bare kan være en if statement :p
-            if (Array.BinarySearch(gamegroupsTitle, title) <= 0)
+            if (Array.BinarySearch(gamegroupsTitle, title) < 0)
             {
                 string NoResult = "";
                 Console.WriteLine("Spillet findes ikke i gamegroup");
@@ -340,7 +340,7 @@ namespace Genspil
             foreach (Gamegroup group in gamegroups)
             {
                 //Da array altid er 2 ingen grund til brug af binarysearch???
-                if (group.ageRecommended[0] >= min && group.numbPlayers[1] >= max)
+                if (group.numbPlayers[0] >= min && group.numbPlayers[1] >= max)
                 {
                     searchResultsNumbPlayers[i] = group;
                     Console.WriteLine(searchResultsNumbPlayers[i].title + " matcher kriteret" + ". Det har rummer " + group.numbPlayers[0] + "-" + group.numbPlayers[1] + " spillere.");
@@ -360,7 +360,46 @@ namespace Genspil
             foreach (Gamegroup group in prevSearchResults)
             {
                 //Da array altid er 2 ingen grund til brug af binarysearch???
-                if (group.ageRecommended[0] >= min && group.numbPlayers[1] >= max)
+                if (group.numbPlayers[0] >= min && group.numbPlayers[1] >= max)
+                {
+                    searchResultsNumbPlayers[i] = group;
+                    Console.WriteLine(searchResultsNumbPlayers[i].title + " matcher kriteret" + ". Det har rummer " + group.numbPlayers[0] + "-" + group.numbPlayers[1] + " spillere.");
+                    i++;
+                }
+            }
+            if (searchResultsNumbPlayers != null)
+                return searchResultsNumbPlayers;
+            else
+                return null;
+        }
+        public Gamegroup[]? SearchNumbPlayers(int min)
+        {
+            int i = 0;
+            Gamegroup[] searchResultsNumbPlayers = new Gamegroup[100];
+            foreach (Gamegroup group in gamegroups)
+            {
+                //Da array altid er 2 ingen grund til brug af binarysearch???
+                if (group.numbPlayers[0] <= min && group.numbPlayers[1] >= min)
+                {
+                    searchResultsNumbPlayers[i] = group;
+                    Console.WriteLine(searchResultsNumbPlayers[i].title + " matcher kriteret" + ". Det har rummer " + group.numbPlayers[0] + "-" + group.numbPlayers[1] + " spillere.");
+                    i++;
+                }
+            }
+            if (searchResultsNumbPlayers != null)
+                return searchResultsNumbPlayers;
+            else
+                return null;
+        }
+
+        public Gamegroup[]? SearchNumbPlayers(int min, Gamegroup[] prevSearchResults)
+        {
+            int i = 0;
+            Gamegroup[] searchResultsNumbPlayers = new Gamegroup[100];
+            foreach (Gamegroup group in prevSearchResults)
+            {
+                //Da array altid er 2 ingen grund til brug af binarysearch???
+                if (group.numbPlayers[0] <= min && group.numbPlayers[1] >= min)
                 {
                     searchResultsNumbPlayers[i] = group;
                     Console.WriteLine(searchResultsNumbPlayers[i].title + " matcher kriteret" + ". Det har rummer " + group.numbPlayers[0] + "-" + group.numbPlayers[1] + " spillere.");
