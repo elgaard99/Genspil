@@ -119,7 +119,7 @@ namespace Genspil
             }
         }
 
-        public void editCustomer(int choice)
+        public void EditCustomer(int choice)
         {
             switch (choice) 
             {
@@ -141,7 +141,8 @@ namespace Genspil
                     break;
             }
         }
-        public void editRequest(int choice)
+
+        public void EditRequest(int choice)
         {
             Console.WriteLine("Vælg et tal for hvilken efterspørgsel du vil redigere:");
             foreach (Request request in requests)

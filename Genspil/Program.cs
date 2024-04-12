@@ -27,10 +27,10 @@
             //warehouse.PrintWarehouse();
             //handler.Save(warehouse.gamegroups);
             
-            //string[] requestTitles = { "Matador", "UNO", "Catan", "Kalaha" };
-            //string requestTitles2 = "Matador";
-            //Request request = new Request(requestTitles);
-            //Request request2 = new Request(requestTitles2);
+            string[] requestTitles = { "Matador", "UNO", "Catan", "Kalaha" };
+            string requestTitles2 = "Matador";
+            Request request = new Request(requestTitles);
+            Request request2 = new Request(requestTitles2);
             //Game One = new Game("Matador", "A", 1);
             //Game Two = new Game("Matador", "B", 2);
             //gamegroups[0].games[0] = One;
@@ -55,7 +55,7 @@
             //Console.WriteLine(customer.ToString());
             CustomerDatabase customerdb = new CustomerDatabase();
             customerdb.AddCustomer(customer);
-            customer.editCustomer(1);
+            customer.EditCustomer(1);
 
             //Menu menu = new Menu();
             Customer[] c = new Customer[] { customer };
@@ -66,7 +66,7 @@
             //Gamegroup[] numb = warehouse.SearchNumbPlayers(2, 12);
 
             Menu menu = new Menu();
-            Customer[] c = new Customer[1];
+            //Customer[] c = new Customer[1];
 
             menu.MainMenu(warehouse, c);
 

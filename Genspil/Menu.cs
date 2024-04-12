@@ -182,8 +182,12 @@ namespace Genspil
                 {
                     Console.Write("Kategori: ");
 
-                    foreach (string s in warehouse.SearchCategories(Console.ReadLine()))
-                        Console.WriteLine(s);
+                    Gamegroup[] gamegroups = warehouse.SearchCategories(Console.ReadLine());
+                    if (gamegroups != null)
+                        foreach (Gamegroup gamegroup in gamegroups)
+                        {
+                            foreach (string cat in gamegroup.categories) Console.WriteLine(cat);
+                        }
 
                     Console.Write("\n(Tryk enter for at komme tilbage)");
                     Console.ReadLine();
