@@ -50,7 +50,6 @@ namespace Genspil
                 string[] _numbPlayers = gamegroupInfo[1].Substring(16).Split(",");
                 string[] _ageRecommended = gamegroupInfo[2].Substring(15).Split(",");
                 string[] _conditionPrice = gamegroupInfo[5].Substring(16).Split("-");
-                //Console.WriteLine(gamegroupInfo[6]);
                 string[] _games = gamegroupInfo[6].Substring(6).Split(",");
 
                 string title = gamegroupInfo[0].Substring(6);
@@ -60,7 +59,6 @@ namespace Genspil
                 float price = float.Parse(gamegroupInfo[4].Substring(6));
                 float[] conditionPrice = { float.Parse(_conditionPrice[0]), float.Parse(_conditionPrice[1]), float.Parse(_conditionPrice[2]), float.Parse(_conditionPrice[3])};
                 Game[] games = new Game[999];
-
                 if (_games[0] != "")
                 {
                     foreach (string referenceNumber in _games)
