@@ -129,7 +129,13 @@ namespace Genspil
             {
                 return (number < 10 ? "0" + number.ToString() : number.ToString());
             }
-            
+
+            List<string> games = new List<string>();
+            foreach (Game game in this.games) 
+            { 
+                
+            }
+
             string s = @$"
                     Title: {title};
                     Number of players: {AddLeadingZero(numbPlayers[0])}, {AddLeadingZero(numbPlayers[1])};

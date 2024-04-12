@@ -74,21 +74,6 @@ namespace Genspil
             return gamegroups;
 
         }
-        /*
-        public void SaveTeams(Team[] teams)
-        {
 
-            using (StreamWriter writer = new StreamWriter(DataFileName))
-            {
-                foreach (Team team in teams)
-                {
-
-                    writer.WriteLine("team;" + team.MakeTitle());
-
-                }
-            }
-        }
-        */
-        
     }
 }
