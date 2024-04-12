@@ -8,7 +8,9 @@ namespace Genspil
 {
     internal class CustomerDatabase
     {
-        public List<Customer> customerDatabase;
+        public List<Customer> customerDatabase = new List<Customer>();
+
+
         public void AddCustomer(Customer customer) 
         {
             customerDatabase.Add(customer);

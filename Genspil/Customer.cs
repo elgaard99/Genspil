@@ -143,7 +143,7 @@ namespace Genspil
         }
         public void editRequest(int choice)
         {
-            Console.WriteLine("Vælg hvilket request du vil redigere:");
+            Console.WriteLine("Vælg et tal for hvilken efterspørgsel du vil redigere:");
             foreach (Request request in requests)
             {
                 int i = 1;
@@ -154,7 +154,7 @@ namespace Genspil
                 }
 
             }
-            Console.WriteLine("Vælg et tal for den efterspørgsel der skal redigeres");
+            Console.WriteLine("Vælg et tal for den indtastning der skal redigeres:");
             Request requestChoice = requests[Convert.ToInt32(Console.ReadLine())];
 
             Console.WriteLine("Vælg hvilken titel du vil redigere:");
