@@ -186,7 +186,8 @@ namespace Genspil
                     if (gamegroups != null)
                         foreach (Gamegroup gamegroup in gamegroups)
                         {
-                            foreach (string cat in gamegroup.categories) Console.WriteLine(cat);
+                            foreach (string cat in gamegroup.categories)
+                                if (cat != null) Console.WriteLine(cat);
                         }
 
                     Console.Write("\n(Tryk enter for at komme tilbage)");
