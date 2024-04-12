@@ -25,14 +25,26 @@ namespace Genspil
             Console.Clear();
 
             Console.Write("Hvordan skal listen sorteres? Tast t for titel eller g for genre: ");
-            string sorting = "t";// Console.ReadLine();
+
+            string sorting;
+            while (true) 
+            {
+                sorting = Console.ReadLine();
+
+                if (sorting == "t" || sorting == "g")
+                    break;
+
+                Console.WriteLine("Du skal enten taste \"t\" eller \"g\".");
+                Console.Write("Prøv igen: ");
+
+            }
 
             // sortér gameGroups efter enten title eller genre
             string[] arrKeys = new string[gamegroups.Length];
             for (int i = 0; i < arrKeys.Length; i++)
             {
                 if (gamegroups[i] != null)
-                    arrKeys[i] = (sorting == "t" ? gamegroups[i].title : null);
+                    arrKeys[i] = (sorting == "t" ? gamegroups[i].title : gamegroups[i].categories[0]);
             }
 
             Gamegroup[] sortedGamegroups = gamegroups;

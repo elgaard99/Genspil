@@ -20,8 +20,6 @@
             DataHandler handler = new DataHandler("gamegroupData.txt");
             Warehouse warehouse = new Warehouse(handler.LoadGamegroups());
 
-            warehouse.PrintWarehouse();
-
             //warehouse.gamegroups[0].AddGame();
             //warehouse.gamegroups[1].AddGame();
             //warehouse.gamegroups[1].AddGame();
@@ -61,7 +59,7 @@
             Menu menu = new Menu();
             Customer[] c = new Customer[1];
 
-            //menu.MainMenu(warehouse, c);
+            menu.MainMenu(warehouse, c);
 
             Console.ReadLine();
 
