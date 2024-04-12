@@ -119,55 +119,75 @@ namespace Genspil
             }
         }
 
-        public void EditCustomer(int choice)
+        public void EditCustomer()
         {
-            switch (choice) 
+            Console.WriteLine("Vælg hvad du vil redigere");
+            Console.WriteLine("1. Fornavn " + firstName);
+            Console.WriteLine("2. Efternavn" + lastName);
+            Console.WriteLine("3. Telefon nummer" + phoneNumber);
+            Console.WriteLine("4. E-mail" + email);
+            Console.WriteLine("5. Efterspørgsel");
+
+            int choice = Convert.ToInt32(Console.ReadLine());
+            if (choice >= 1 || choice <= 5)
             {
-                case 1:
-                    Console.WriteLine("Indtast et nyt fornavn: ");
-                    this.firstName = Console.ReadLine();
-                    break;
-                case 2:
-                    Console.WriteLine("Indtast et nyt efternavn: ");
-                    this.lastName = Console.ReadLine();
-                    break;
-                case 3:
-                    Console.WriteLine("Indtast et nyt telefon nummer: ");
-                    this.phoneNumber = Convert.ToInt32(Console.ReadLine());
-                    break;
-                case 4:
-                    Console.WriteLine("Indtast en nyt email: ");
-                    this.email = Console.ReadLine();
-                    break;
+                switch (choice)
+                {
+                    case 1:
+                        Console.WriteLine("Indtast et nyt fornavn: ");
+                        this.firstName = Console.ReadLine();
+                        break;
+                    case 2:
+                        Console.WriteLine("Indtast et nyt efternavn: ");
+                        this.lastName = Console.ReadLine();
+                        break;
+                    case 3:
+                        Console.WriteLine("Indtast et nyt telefon nummer: ");
+                        this.phoneNumber = Convert.ToInt32(Console.ReadLine());
+                        break;
+                    case 4:
+                        Console.WriteLine("Indtast en nyt email: ");
+                        this.email = Console.ReadLine();
+                        break;
+                    case 5:
+                        EditRequest();
+                        break;
+                }
             }
         }
 
-        public void EditRequest(int choice)
+        public void EditRequest()
         {
             Console.WriteLine("Vælg et tal for hvilken efterspørgsel du vil redigere:");
+            int i = 1;
             foreach (Request request in requests)
-            {
-                int i = 1;
-                Console.WriteLine(i + ":");
-                foreach (string title in request.titles)
                 {
-                    Console.WriteLine("-" + title);
+                    if (request != null)
+                    {
+                        Console.WriteLine("Request " + i + ":");
+                        foreach (string title in request.titles)
+                        {
+                            Console.WriteLine("-" + title);
+                        }
+                        i++;
+                    }
+                    
                 }
-
-            }
             Console.WriteLine("Vælg et tal for den indtastning der skal redigeres:");
-            Request requestChoice = requests[Convert.ToInt32(Console.ReadLine())];
+            Request requestChoice = requests[Convert.ToInt32(Console.ReadLine())-1];
 
             Console.WriteLine("Vælg hvilken titel du vil redigere:");
             int j = 1;
             foreach (string title in requestChoice.titles)
             {
-                Console.WriteLine( j + title);
+                Console.WriteLine( j + " " + title);
                 j++;
             }
             Console.WriteLine("Vælg et tal for den titel der skal redigeres");
-            string titleChoice = requestChoice.titles[Convert.ToInt32(Console.ReadLine())];
+            int titleIndex = Convert.ToInt32(Console.ReadLine());
+            string titleChoice = requestChoice.titles[titleIndex];
             Console.WriteLine("Indtast efterspørgsel:");
+            requestChoice.titles[titleIndex] = Console.ReadLine();
            
         }
     }
