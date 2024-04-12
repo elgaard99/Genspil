@@ -15,11 +15,65 @@ namespace Genspil
         public string email;
         public int customerNumber;
         public Request[] requests = new Request[100]; // maks 100 forespørgelser
+        
 
-        public Customer(string firstName = "", int ?phoneNumber = null)
+        //Demme er vel ikke færdig?? Har givet mit bud på alle mulige constructore
+        public Customer(string firstName)
         {
             this.firstName = firstName;
         }
+
+        public Customer(string firstName, string lastName)
+        {
+            this.firstName = firstName;
+            this.lastName = lastName;
+
+        }
+        public Customer(string firstName, string lastName, int phoneNumber)
+        {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.phoneNumber = phoneNumber;
+        }
+
+        public Customer(string firstName, string lastName, int phoneNumber, Request[] requests)
+        {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.phoneNumber = phoneNumber;
+            this.requests = requests;
+        }
+
+        public Customer(string firstName, string lastName, string email)
+        {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.email = email;
+        }
+
+        public Customer(string firstName, string lastName, string email, Request[] requests)
+        {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.email = email;
+        }
+
+        public Customer(string firstName, string lastName, int phoneNumber, string email)
+        {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.phoneNumber = phoneNumber;
+            this.email = email;
+        }
+
+        public Customer(string firstName, string lastName, int phoneNumber, string email, Request[] requests)
+        {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.phoneNumber = phoneNumber;
+            this.email = email;
+        }
+
 
         public void MakeRequest(Request request)
         {
