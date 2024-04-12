@@ -64,7 +64,13 @@ namespace Genspil
             {
 
                 if (char.TryParse(Console.ReadLine(), out chooseCondition))
-                    break;
+                {
+
+                    if (chooseCondition >= 65 && chooseCondition <= 68)
+                        break;
+                    
+                        
+                }
 
                 Console.WriteLine("Du skal angive et bogstav. A, B, C, eller D");
                 
@@ -92,7 +98,7 @@ namespace Genspil
             Console.WriteLine("Hvilket spil ønsker du at slette?");
 
             foreach (Game game in this.games)
-                Console.WriteLine("\t" + game.ReferenceNumber);
+               if (game != null) Console.WriteLine("\t" + game.ReferenceNumber);
 
             Console.Write("\n\n(Tryk menupunkt eller 0 for at afslutte) ");
 
@@ -107,6 +113,7 @@ namespace Genspil
                 {
                     for (int i = 0; i < this.games.Length; i++)
                     {
+                        if (games[i] == null) continue;
                         int startIndexOfNumber = games[i].ReferenceNumber.IndexOf("-") + 1;
 
                         if (refNumber == int.Parse(games[i].ReferenceNumber.Substring(startIndexOfNumber, 4))) //gets the count-part of a reference-number
