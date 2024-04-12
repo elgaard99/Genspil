@@ -10,7 +10,7 @@
 
             Gamegroup[] gamegroups =
             {
-                new Gamegroup("Matador", new[] { 2, 6 }, new[] { 10, 99 }, new[] { "børn", "strategi" }, 199.95F, new[] { 1F, 0.9F, 0.8F, 0.7F }),
+                new Gamegroup("Matador", new[] { 2, 4 }, new[] { 10, 99 }, new[] { "børn", "strategi" }, 199.95F, new[] { 1F, 0.9F, 0.8F, 0.7F }),
                 new Gamegroup("UNO", new[] { 2, 6 }, new[] { 10, 99 }, new[] { "børn", "strategi" }, 199.95F, new[] { 1F, 0.9F, 0.8F, 0.7F }),
                 new Gamegroup("Catan", new[] { 3, 12 }, new[] { 10, 99 }, new[] { "brætspil", "strategi" }, 199.95F, new[] {1F, 0.9F, 0.8F, 0.7F }),
                 new Gamegroup("Kalaha", new[] { 2, 6 }, new[] { 10, 12 }, new[] { "kugler", "strategi" }, 199.95F, new[] {1F, 0.9F, 0.8F, 0.7F })
@@ -46,15 +46,24 @@
             //            warehouse1.PrintWarehouse();
             //*/
             ////warehouse.SearchTitle(gamegroups, "Matador");
-            ////request.AvailabilityNotice(gamegroups, warehouse);
-            Customer customer = new Customer();
+            //request.AvailabilityNotice(gamegroups, warehouse);
+            Customer customer = new Customer("Daniel");
             customer.customerNumber = 1234;
-            ////customer.requests = new[] { request };
-            //customer.MakeRequest(request);
-            //customer.MakeRequest(request2);
+            customer.MakeRequest(request);
+            customer.MakeRequest(request2);
             //customer.AvailabilityNotice(warehouse);
             //Console.WriteLine(customer.ToString());
+            CustomerDatabase customerdb = new CustomerDatabase();
+            customerdb.AddCustomer(customer);
+            customer.editCustomer(1);
 
+            //Menu menu = new Menu();
+            Customer[] c = new Customer[] { customer };
+            //menu.MainMenu(warehouse, c);
+            //warehouse.CreateGamegroup();
+
+            //Gamegroup[] cat = warehouse.SearchCategories("strategi");
+            //Gamegroup[] numb = warehouse.SearchNumbPlayers(2, 12);
 
             Menu menu = new Menu();
             Customer[] c = new Customer[1];
