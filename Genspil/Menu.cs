@@ -71,7 +71,7 @@ namespace Genspil
             }
         }
 
-        public void MainMenu(Warehouse warehouse, Customer[] customers)
+        public void MainMenu(Warehouse warehouse, CustomerDatabase customerDatabase)
         {
 
             while (true)
@@ -95,9 +95,7 @@ namespace Genspil
                         break;
 
                     case "Kunder":
-                        CustomerMenu(customers);
-                        Console.Write("Tast enter for at komme til Hovedmenuen");
-                        Console.ReadLine();
+                        CustomerMenu(customerDatabase);
                         break;
 
                     case "Rediger Lager":
@@ -204,25 +202,78 @@ namespace Genspil
 
         }
 
-        void CustomerMenu(Customer[] customers)
+        void CustomerMenu(CustomerDatabase customerDatabase)
         {
-            void CreateCostumer()
+
+            Menu subMenu = new Menu
+                (
+                "Kunder",
+                new[]
+                {
+                    "Opret Kunde",
+                    "Slet Kunde",
+                    "Rediger Eksisterende Kunde",
+                    "Print Kunder"
+                }
+            );
+
+            while (true)
             {
+                Console.Clear();
+
+                int selectedMenu = subMenu.SelectMenuItem();
+
+                if (selectedMenu == -1)
+                    break;
+
+                Console.Clear();
+
+                switch (subMenu.menuItems[selectedMenu])
+                {
+                    case "Opret Kunde":
+                        customerDatabase.AddCustomer();
+                        break;
+
+                    case "Slet Kunde":
+                        customerDatabase.RemoveCustomer();
+                        break;
+
+                    case "Rediger Eksisterende Kunde":
+                        EditCustomer();
+                        break;
+
+                    case "Print Kunder":
+                        customerDatabase.PrintCustomers();
+                        Console.Write("\n\n(Tryk enter for at gå tilbage) ");
+                        Console.ReadLine();
+                        break;
+                }
+
+                void EditCustomer()
+                {
+                    Console.Clear();
+                    customerDatabase.PrintCustomers();
+
+                    Console.Write("Indtast kundenr. på den kunde du vil redigere (eller enter): ");
+
+                    string customerNo = Console.ReadLine();
+                    if (customerNo != "")
+                    {
+                        int.TryParse(customerNo, out int customerId);
+
+                        foreach (Customer c in customerDatabase.customerDatabase)
+                            if (c.customerNumber == customerId)
+                            {
+                                c.EditCustomer();
+                                break;
+                            }
+
+                    }
+                
+                }
+
             }
 
-            void EditCustomer()
-            {
-            }
-
-            void RemoveCustomer()
-            {
-            }
-
-            void CreateRequst()
-            {
-                //find customer
-                //customer.MakeReequest()
-            }
         }
 
         void EditWarehouse(Warehouse warehouse)

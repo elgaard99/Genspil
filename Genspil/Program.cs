@@ -6,7 +6,7 @@
         {
 
             // I skal indsætte stien til hvor gamegroupData.txt gemmes
-            Environment.CurrentDirectory = "C:\\Users\\dscha\\source\\repos\\Genspil\\Genspil\\";
+            Environment.CurrentDirectory = "C:\\Visual Studio 2022\\Source\\Repos\\Genspil\\Genspil"; //"C:\\Users\\dscha\\source\\repos\\Genspil\\Genspil\\";
 
             Gamegroup[] gamegroups =
             {
@@ -27,10 +27,10 @@
             //warehouse.PrintWarehouse();
             //handler.Save(warehouse.gamegroups);
             
-            string[] requestTitles = { "Matador", "UNO", "Catan", "Kalaha" };
-            string requestTitles2 = "Matador";
-            Request request = new Request(requestTitles);
-            Request request2 = new Request(requestTitles2);
+            //string[] requestTitles = { "Matador", "UNO", "Catan", "Kalaha" };
+            //string requestTitles2 = "Matador";
+            //Request request = new Request(requestTitles);
+            //Request request2 = new Request(requestTitles2);
             //Game One = new Game("Matador", "A", 1);
             //Game Two = new Game("Matador", "B", 2);
             //gamegroups[0].games[0] = One;
@@ -47,10 +47,10 @@
             //*/
             ////warehouse.SearchTitle(gamegroups, "Matador");
             //request.AvailabilityNotice(gamegroups, warehouse);
-            Customer customer = new Customer("Daniel");
-            customer.customerNumber = 1234;
-            customer.MakeRequest(request);
-            customer.MakeRequest(request2);
+            Customer customer = new Customer("Daniel", "Scharla");
+            customer.customerNumber = 1;
+            //customer.MakeRequest(request);
+            //customer.MakeRequest(request2);
             //customer.AvailabilityNotice(warehouse);
             //Console.WriteLine(customer.ToString());
             CustomerDatabase customerdb = new CustomerDatabase();
@@ -58,7 +58,7 @@
             //customer.EditCustomer(1);
 
             //Menu menu = new Menu();
-            Customer[] c = new Customer[] { customer };
+            //Customer[] c = new Customer[] { customer };
             //menu.MainMenu(warehouse, c);
             //warehouse.CreateGamegroup();
 
@@ -67,9 +67,19 @@
 
             Menu menu = new Menu();
             //Customer[] c = new Customer[1];
-            customer.EditCustomer();
+            //customer.EditCustomer();
 
-            //menu.MainMenu(warehouse, c);
+            
+            Customer c = new Customer("Sander", "Andersen", 32323232, "sander@gmail.com");
+            c.customerNumber = 2;
+            Customer cc = new Customer("Henrik", "Andersen", 67767676, "henrik@gmail.com");
+            cc.customerNumber = 3;
+            customerdb.AddCustomer(cc);
+            customerdb.AddCustomer(c);
+
+            customerdb.PrintCustomers();
+
+            menu.MainMenu(warehouse, customerdb);
 
             Console.ReadLine();
 

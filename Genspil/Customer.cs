@@ -27,6 +27,9 @@ namespace Genspil
         {
             this.firstName = firstName;
             this.lastName = lastName;
+            this.phoneNumber = 0;
+            this.email = "";
+            this.customerNumber = -1;
 
         }
         public Customer(string firstName, string lastName, int phoneNumber)
@@ -64,6 +67,7 @@ namespace Genspil
             this.lastName = lastName;
             this.phoneNumber = phoneNumber;
             this.email = email;
+            
         }
 
         public Customer(string firstName, string lastName, int phoneNumber, string email, Request[] requests)
@@ -74,23 +78,34 @@ namespace Genspil
             this.email = email;
         }
 
-
-        public void MakeRequest(Request request)
+        public void MakeRequest()
         {
-            int i = 0;
-            foreach (Request request2 in requests)
+            
+            Console.Clear();
+
+            Console.Write("Hvilken title skal der laves en forespørgsel på (enter for at gå tilbage): ");
+            string title = Console.ReadLine();
+
+            if (title != "")
             {
-                if (requests[i] != null)
+                Request request = new Request(title);
+
+                int i = 0;
+                foreach (Request request2 in requests)
                 {
-                    i++;
-                }
-                else
-                {
-                    this.requests[i] = request;
-                    break;
+                    if (requests[i] != null)
+                    {
+                        i++;
+                    }
+                    else
+                    {
+                        this.requests[i] = request;
+                        break;
+                    }
                 }
             }
         }
+
         //mindre "Bug" i denne, da hvis du kommer til at tilføje en anden request der allerede eksistere printer den igen. Fx hvis der er oprettet 2 x matador, printes det 2 gange
         public void AvailabilityNotice(Warehouse warehouse)
         {
@@ -127,6 +142,7 @@ namespace Genspil
             Console.WriteLine("3. Telefon nummer" + phoneNumber);
             Console.WriteLine("4. E-mail" + email);
             Console.WriteLine("5. Efterspørgsel");
+            Console.WriteLine("6. Opret Efterspørgsel");
 
             int choice = Convert.ToInt32(Console.ReadLine());
             if (choice >= 1 || choice <= 5)
@@ -151,6 +167,10 @@ namespace Genspil
                         break;
                     case 5:
                         EditRequest();
+                        break;
+
+                    case 6:
+                        MakeRequest();
                         break;
                 }
             }
