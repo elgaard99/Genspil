@@ -134,15 +134,7 @@ namespace Genspil
                 conditionPrice[i] = (1-(float.Parse(Console.ReadLine())/100)) * price;
                 Console.WriteLine(conditionPrice[i]);
             }
-            //foreach (int condition in conditionPrice)
-            //{
-            //    if (condition == 0) { Console.WriteLine("Indtast % discount på tilstand A:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price; }
-            //    if (condition == 1) { Console.WriteLine("Indtast discount på tilstand B:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price; }
-            //    if (condition == 2) Console.WriteLine("Indtast discount på tilstand C:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
-            //    if (condition == 3) Console.WriteLine("Indtast discount på tilstand D:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
-            //    //if (condition == 4) Console.WriteLine("Indtast discount på tilstand E:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
-            //    //if (condition == 5) Console.WriteLine("Indtast discount på tilstand F:"); conditionPrice[condition] = float.Parse(Console.ReadLine()) * price;
-            //}
+
 
             Gamegroup newGameGroup = new Gamegroup(title, numbPlayers, ageRecommended, categories, price, conditionPrice);
 
@@ -269,7 +261,7 @@ namespace Genspil
                 return (new CaseInsensitiveComparer()).Compare(((Gamegroup)x).categories[0], ((Gamegroup)y).categories[0]);
             }
         }
-        public Gamegroup SearchTitle(Gamegroup[] gamegroups, string title)
+        public Gamegroup? SearchTitle(Gamegroup[] gamegroups, string title)
         {
             Array.Sort(gamegroups, new CompareTitle());
             string[] gamegroupsTitle = new string[gamegroups.Length];
@@ -291,41 +283,122 @@ namespace Genspil
             else return gamegroups[Array.BinarySearch(gamegroupsTitle, title)];
         }
 
-        public string[] SearchCategories(string category)
+        public Gamegroup[]? SearchCategories(string category)
         {
             Array.Sort(gamegroups, new CompareCat());
-            string[] searchResultsCat= new string[gamegroups.Length];
+            Gamegroup[] searchResultsCat= new Gamegroup[gamegroups.Length];
             int i = 0;
             foreach (Gamegroup group in gamegroups)
             {
                 if (Array.BinarySearch(group.categories, category) >= 0)
                 {
-                    searchResultsCat[i] = group.title;
-                    Console.WriteLine(searchResultsCat[i] + " matcher kriteret " + category);
+                    searchResultsCat[i] = group;
+                    Console.WriteLine(searchResultsCat[i].title + " matcher kriteret " + category);
                     i++;
                 }
-                else
+            }
+            if (searchResultsCat != null)
+                return searchResultsCat;
+            else 
+                return null;
+        }
+        public Gamegroup[]? SearchCategories(string category, Gamegroup[] prevSearchResults)
+        {
+            Array.Sort(gamegroups, new CompareCat());
+            Gamegroup[] searchResultsCat = new Gamegroup[gamegroups.Length];
+            int i = 0;
+            foreach (Gamegroup group in prevSearchResults)
+            {
+                if (Array.BinarySearch(group.categories, category) >= 0)
                 {
-                    string[] noResult = { "Intet", " resultat", " af søgning" };
-                    return noResult;
+                    searchResultsCat[i] = group;
+                    Console.WriteLine(searchResultsCat[i].title + " matcher kriteret " + category);
+                    i++;
                 }
             }
-            return searchResultsCat;
+            if (searchResultsCat != null)
+                return searchResultsCat;
+            else
+                return null;
         }
-        public void SearchNumbPlayers(int min, int max)
+        public Gamegroup[]? SearchNumbPlayers(int min, int max)
         {
             int i = 0;
-            string[] searchResultsNumbPlayers = new string[100];
+            Gamegroup[] searchResultsNumbPlayers = new Gamegroup[100];
             foreach (Gamegroup group in gamegroups)
             {
                 //Da array altid er 2 ingen grund til brug af binarysearch???
-                if (group.numbPlayers[0] >= min && group.numbPlayers[0] >= max)
+                if (group.ageRecommended[0] >= min && group.numbPlayers[1] >= max)
                 {
-                    searchResultsNumbPlayers[i] = group.title;
-                    Console.WriteLine(searchResultsNumbPlayers[i] + " matcher kriteret" + ". Det har rummer " + group.numbPlayers[0] + "-" + group.numbPlayers[1] + " spillere.");
+                    searchResultsNumbPlayers[i] = group;
+                    Console.WriteLine(searchResultsNumbPlayers[i].title + " matcher kriteret" + ". Det har rummer " + group.numbPlayers[0] + "-" + group.numbPlayers[1] + " spillere.");
                     i++;
                 }
             }
+            if (searchResultsNumbPlayers != null)
+                return searchResultsNumbPlayers;
+            else
+                return null;
+        }
+
+        public Gamegroup[]? SearchNumbPlayers(int min, int max, Gamegroup[] prevSearchResults)
+        {
+            int i = 0;
+            Gamegroup[] searchResultsNumbPlayers = new Gamegroup[100];
+            foreach (Gamegroup group in prevSearchResults)
+            {
+                //Da array altid er 2 ingen grund til brug af binarysearch???
+                if (group.ageRecommended[0] >= min && group.numbPlayers[1] >= max)
+                {
+                    searchResultsNumbPlayers[i] = group;
+                    Console.WriteLine(searchResultsNumbPlayers[i].title + " matcher kriteret" + ". Det har rummer " + group.numbPlayers[0] + "-" + group.numbPlayers[1] + " spillere.");
+                    i++;
+                }
+            }
+            if (searchResultsNumbPlayers != null)
+                return searchResultsNumbPlayers;
+            else
+                return null;
+        }
+
+        public Gamegroup[]? SearchAgeRecommend(int min, int max)
+        {
+            int i = 0;
+            Gamegroup[] searchResultsAgeRecommended = new Gamegroup[100];
+            foreach (Gamegroup group in gamegroups)
+            {
+                //Da array altid er 2 ingen grund til brug af binarysearch???
+                if (group.ageRecommended[0] >= min && group.ageRecommended[1] <= max)
+                {
+                    searchResultsAgeRecommended[i] = group;
+                    Console.WriteLine(searchResultsAgeRecommended[i].title + " matcher kriteret" + ". Det har rummer " + group.ageRecommended[0] + "-" + group.ageRecommended[1] + " spillere.");
+                    i++;
+                }
+            }
+            if (searchResultsAgeRecommended != null)
+                return searchResultsAgeRecommended;
+            else
+                return null;
+        }
+
+        public Gamegroup[]? SearchAgeRecommend(int min, int max, Gamegroup[] prevSearchResults)
+        {
+            int i = 0;
+            Gamegroup[] searchResultsAgeRecommended = new Gamegroup[100];
+            foreach (Gamegroup group in prevSearchResults)
+            {
+                //Da array altid er 2 ingen grund til brug af binarysearch???
+                if (group.ageRecommended[0] >= min && group.ageRecommended[1] <= max)
+                {
+                    searchResultsAgeRecommended[i] = group;
+                    Console.WriteLine(searchResultsAgeRecommended[i].title + " matcher kriteret" + ". Det har rummer " + group.ageRecommended[0] + "-" + group.ageRecommended[1] + " spillere.");
+                    i++;
+                }
+            }
+            if (searchResultsAgeRecommended != null)
+                return searchResultsAgeRecommended;
+            else
+                return null;
         }
         /*public object AddGame(int ID) 
         {
