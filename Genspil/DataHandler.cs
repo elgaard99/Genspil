@@ -50,8 +50,7 @@ namespace Genspil
                 string[] _numbPlayers = gamegroupInfo[1].Substring(16).Split(",");
                 string[] _ageRecommended = gamegroupInfo[2].Substring(15).Split(",");
                 string[] _conditionPrice = gamegroupInfo[5].Substring(16).Split("-");
-
-                Console.WriteLine(gamegroupInfo[5].Substring(16));
+                string[] _games = gamegroupInfo[6].Substring(6).Split(",");
 
                 string title = gamegroupInfo[0].Substring(6);
                 int[] numbPlayers = { int.Parse(_numbPlayers[0]), int.Parse(_numbPlayers[1]) };
@@ -59,12 +58,20 @@ namespace Genspil
                 string[] categories = gamegroupInfo[3].Substring(11).Split(",");
                 float price = float.Parse(gamegroupInfo[4].Substring(6));
                 float[] conditionPrice = { float.Parse(_conditionPrice[0]), float.Parse(_conditionPrice[1]), float.Parse(_conditionPrice[2]), float.Parse(_conditionPrice[3])};
-                
-                // gamegruppen loader pt ikke lagerede games, men instantialiseres med en tom Game array.
-                // Hvis der er en som implementere at loade Games, go-ahead!
-                //Game[] games = [];
+                Game[] games = new Game[999];
+                if (_games[0] != "")
+                {
+                    foreach (string referenceNumber in _games)
+                    {
 
-                Gamegroup gamegroup = new Gamegroup(title, numbPlayers, ageRecommended, categories, price, conditionPrice);
+                        int indexOfGame = int.Parse(referenceNumber.Substring((referenceNumber.Length - 5), 4)); //gets the count-part of a reference-number
+                        games[indexOfGame] = new Game(referenceNumber);
+
+                    }
+
+                }
+
+                Gamegroup gamegroup = new Gamegroup(title, numbPlayers, ageRecommended, categories, price, conditionPrice, games);
 
                 gamegroups[lineNo] = gamegroup;
 
@@ -74,21 +81,6 @@ namespace Genspil
             return gamegroups;
 
         }
-        /*
-        public void SaveTeams(Team[] teams)
-        {
 
-            using (StreamWriter writer = new StreamWriter(DataFileName))
-            {
-                foreach (Team team in teams)
-                {
-
-                    writer.WriteLine("team;" + team.MakeTitle());
-
-                }
-            }
-        }
-        */
-        
     }
 }
