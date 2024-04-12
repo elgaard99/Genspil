@@ -15,10 +15,20 @@
                 new Gamegroup("Catan", new[] { 3, 12 }, new[] { 10, 99 }, new[] { "brætspil", "strategi" }, 199.95F, new[] {1F, 0.9F, 0.8F, 0.7F }),
                 new Gamegroup("Kalaha", new[] { 2, 6 }, new[] { 10, 12 }, new[] { "kugler", "strategi" }, 199.95F, new[] {1F, 0.9F, 0.8F, 0.7F })
             };
-
+            //Referencenummer: "Matador-0001A"
             //Warehouse warehouse = new Warehouse(gamegroups);
             DataHandler handler = new DataHandler("gamegroupData.txt");
-            Warehouse warehouse = new Warehouse( handler.LoadGamegroups() );
+            Warehouse warehouse = new Warehouse(handler.LoadGamegroups());
+
+            warehouse.PrintWarehouse();
+
+            //warehouse.gamegroups[0].AddGame();
+            //warehouse.gamegroups[1].AddGame();
+            //warehouse.gamegroups[1].AddGame();
+
+            //warehouse.PrintWarehouse();
+            //handler.Save(warehouse.gamegroups);
+            
             //string[] requestTitles = { "Matador", "UNO", "Catan", "Kalaha" };
             //string requestTitles2 = "Matador";
             //Request request = new Request(requestTitles);
@@ -51,7 +61,7 @@
             Menu menu = new Menu();
             Customer[] c = new Customer[1];
 
-            menu.MainMenu(warehouse, c);
+            //menu.MainMenu(warehouse, c);
 
             Console.ReadLine();
 

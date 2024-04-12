@@ -25,7 +25,7 @@ namespace Genspil
             Console.Clear();
 
             Console.Write("Hvordan skal listen sorteres? Tast t for titel eller g for genre: ");
-            string sorting = Console.ReadLine();
+            string sorting = "t";// Console.ReadLine();
 
             // sortér gameGroups efter enten title eller genre
             string[] arrKeys = new string[gamegroups.Length];
