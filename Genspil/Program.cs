@@ -92,8 +92,12 @@
             Warehouse warehouse = new Warehouse(gamegroupsHandler.LoadGamegroups());
             CustomerDatabase customerdb = new CustomerDatabase(customersHandler.LoadCustomers());
 
-            Menu menu = new Menu();
-            menu.MainMenu(warehouse, customerdb);
+            //Menu menu = new Menu();
+            //menu.MainMenu(warehouse, customerdb);
+
+            customerdb.customerDatabase[0].MakeRequest();
+            customerdb.customerDatabase[0].MakeRequest();
+            customerdb.customerDatabase[1].MakeRequest();
 
             gamegroupsHandler.Save(warehouse.gamegroups);
             customersHandler.Save(customerdb.ToArray());
