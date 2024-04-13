@@ -8,8 +8,15 @@ namespace Genspil
 {
     internal class CustomerDatabase
     {
-        public List<Customer> customerDatabase = new List<Customer>();
+        public List<Customer> customerDatabase;
 
+        public CustomerDatabase() 
+        { 
+            this.customerDatabase = new List<Customer>();
+        }
+
+        public CustomerDatabase(List<Customer> customerDatabase)
+        { this.customerDatabase = customerDatabase; }
 
         public void AddCustomer(Customer customer) 
         {
@@ -118,6 +125,17 @@ namespace Genspil
                     $"{c.customerNumber}");
 
             
+
+        }
+
+        public string[] ToArray()
+        {
+            string[] customers = new string[customerDatabase.Count];
+
+            for (int i = 0; i < customers.Length; i++)
+                customers[i] = customerDatabase[i].ToString();
+
+            return customers;
 
         }
     }

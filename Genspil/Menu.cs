@@ -149,7 +149,7 @@ namespace Genspil
                         break;
 
                     case "Søg efter alder":
-                        //warehouse.SearchAgeRecommended();
+                        SearchAgeRecommend();
                         break;
 
                     case "Søg på flere kriterier":
@@ -198,6 +198,19 @@ namespace Genspil
                     Console.ReadLine();
                 }
 
+                void SearchAgeRecommend()
+                {
+                    Console.Write("Miniums alder: ");
+                    int.TryParse(Console.ReadLine(), out int min);
+
+                    Console.Write("Maks alder: ");
+                    int.TryParse(Console.ReadLine(), out int max);
+
+                    warehouse.SearchAgeRecommend(min, max);
+
+                    Console.Write("\n(Tryk enter for at komme tilbage)");
+                    Console.ReadLine();
+                }
             }
 
         }

@@ -82,5 +82,30 @@ namespace Genspil
 
         }
 
+        public List<Customer> LoadCustomers()
+        {
+            string[] lines = File.ReadAllLines(DataFileName);
+
+            List<Customer> customers = new List<Customer>();
+
+            int lineNo = 0;
+            foreach (string line in lines)
+            {
+
+                string[] customerInfo = line.Split(",");
+
+                customers.Add(
+                    new Customer(
+                        customerInfo[0],
+                        customerInfo[1],
+                        int.Parse(customerInfo[2]),
+                        customerInfo[3],
+                        int.Parse(customerInfo[4])
+                        ));
+            }
+
+            return customers;
+
+        }
     }
 }

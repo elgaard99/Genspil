@@ -70,6 +70,11 @@ namespace Genspil
             
         }
 
+        public Customer(string firstName, string lastName, int phoneNumber, string email, int customerId) : this(firstName, lastName, phoneNumber, email)
+        {
+            this.customerNumber = customerId;
+        }
+
         public Customer(string firstName, string lastName, int phoneNumber, string email, Request[] requests)
         {
             this.firstName = firstName;
@@ -210,5 +215,11 @@ namespace Genspil
             requestChoice.titles[titleIndex] = Console.ReadLine();
            
         }
+
+        public override string ToString()
+        {
+            return $"{firstName}, {lastName}, {phoneNumber}, {email}, {customerNumber}";
+        }
+
     }
 }
