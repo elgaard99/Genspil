@@ -76,13 +76,15 @@
             */
 
             // hvordan skal AvailabilityNotice implementeres ?
+            // -havde umiddelbarttænkt hver gang AddGame bleev kaldt (altså i slutningen, men tester bugs først før jeg implemenntere det
             // hvordan skal Requests gemmes ?
+            // - Som string[] i request.title
             // implementation i menuen så der kan søges på flere kriterier.
             // ret bugs.
             // PrintCustomers() kan gøres pænere...
 
             // I skal indsætte stien til hvor gamegroupData.txt og customerData.txt gemmes
-            Environment.CurrentDirectory = "C:\\Visual Studio 2022\\Source\\Repos\\Genspil\\Genspil"; //"C:\\Users\\dscha\\source\\repos\\Genspil\\Genspil\\";
+            Environment.CurrentDirectory = /*"C:\\Visual Studio 2022\\Source\\Repos\\Genspil\\Genspil";*/ "C:\\Users\\dscha\\source\\repos\\Genspil\\Genspil\\";
 
             DataHandler gamegroupsHandler = new DataHandler("gamegroupData.txt");
             DataHandler customersHandler = new DataHandler("customerData.txt");
@@ -100,3 +102,6 @@
 
     }
 }
+
+//RETTELSER:
+// - Den gik i endless loop hvis du ville slette et spil fra en gamegroup der ikke er spil i. - ÅBEN

@@ -160,7 +160,6 @@ namespace Genspil
 
             gamegroups = tempGameGroups;
             Array.Sort(gamegroups, new CompareTitle());
-
         }
 
         public void RemoveGamegroup()
@@ -175,10 +174,11 @@ namespace Genspil
             Console.Write("\n\n(Tryk menupunkt eller 0 for at afslutte) ");
 
             int gamegroupIndex = 0;
-            while (true)
+            string choice = Console.ReadLine(); // Tilføjet så du kan gå ud fra menuen ved at trykke 0, da den ellers sagde det var et ugyldigt valg med 0
+            while (choice != "0") //Tilføjet at denne ikke skal være 0, for at undgå loopet.
             {
 
-                if (int.TryParse(Console.ReadLine(), out gamegroupIndex))
+                if (int.TryParse(choice, out gamegroupIndex))
                 {
 
                     gamegroupIndex--;

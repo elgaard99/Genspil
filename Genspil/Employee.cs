@@ -54,7 +54,7 @@ namespace Genspil
         }
 
 
-        public void AddGame()
+        public void AddGame(DataHandler dataHandler)
         {
             //_*_*_tester linje skal fjernes, antager at der allerede er et spil i gameGroups i warehouse klassen
             Console.Clear();
