@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -180,8 +181,7 @@ namespace Genspil
                 {
                     Console.Write("Kategori: ");
 
-                    Gamegroup[] gamegroups = warehouse.SearchCategories(Console.ReadLine());
-                    
+                    warehouse.SearchCategories(Console.ReadLine());
 
                     Console.Write("\n(Tryk enter for at komme tilbage)");
                     Console.ReadLine();

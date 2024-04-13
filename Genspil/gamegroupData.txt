@@ -1,5 +1,6 @@
-Title:;Numberofplayers:02,07;RecommendedAge:01,99;Categories:;Price:1000;ConditionPrices:950-850-750-550;Games:
+Title:Loot;Numberofplayers:01,04;RecommendedAge:02,100;Categories:;Price:200;ConditionPrices:190-170-150-110;Games:
+Title:1;Numberofplayers:01,02;RecommendedAge:01,02;Categories:0;Price:100;ConditionPrices:75-65-55-45;Games:
 Title:Catan;Numberofplayers:03,12;RecommendedAge:10,99;Categories:brætspil,strategi;Price:199,95;ConditionPrices:1-0,9-0,8-0,7;Games:
-Title:Kalaha;Numberofplayers:02,06;RecommendedAge:10,12;Categories:kugler,strategi;Price:199,95;ConditionPrices:1-0,9-0,8-0,7;Games:
-Title:Matador;Numberofplayers:02,04;RecommendedAge:10,99;Categories:børn,strategi;Price:199,95;ConditionPrices:1-0,9-0,8-0,7;Games:
+Title:Matador;Numberofplayers:02,04;RecommendedAge:10,99;Categories:børn,strategi;Price:199,95;ConditionPrices:1-0,9-0,8-0,7;Games:Matador-0001D
 Title:UNO;Numberofplayers:02,06;RecommendedAge:10,99;Categories:børn,strategi;Price:199,95;ConditionPrices:1-0,9-0,8-0,7;Games:
+Title:Kalaha;Numberofplayers:02,06;RecommendedAge:10,12;Categories:kugler,strategi;Price:199,95;ConditionPrices:1-0,9-0,8-0,7;Games:

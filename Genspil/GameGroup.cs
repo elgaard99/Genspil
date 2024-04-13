@@ -95,12 +95,18 @@ namespace Genspil
 
         public void RemoveGame()
         {
-            if (this.games != null)
+            if (this.games.Count(g=>g != null) > 0)
             {
                 Console.WriteLine("Hvilket spil ønsker du at slette?");
-
+                int j = 1; //For at give hvert spil et tal man kan vælge
                 foreach (Game game in this.games)
-                    if (game != null) Console.WriteLine("\t" + game.ReferenceNumber);
+                {
+                    if (game != null)
+                    {
+                        Console.WriteLine(j + "\t" + game.ReferenceNumber);
+                        j++;
+                    }
+                }
 
                 Console.Write("\n\n(Tryk menupunkt eller 0 for at afslutte) ");
 
@@ -137,6 +143,11 @@ namespace Genspil
 
                 games[idxOfGame] = null;
             }
+            else 
+            { 
+                Console.WriteLine("Der er ingen spil at slette! Tryk enter for at gå tilbage tidligere menu");
+                Console.ReadLine();
+            };
                 
 
         }

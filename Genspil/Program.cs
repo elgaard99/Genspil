@@ -91,7 +91,6 @@
 
             Warehouse warehouse = new Warehouse(gamegroupsHandler.LoadGamegroups());
             CustomerDatabase customerdb = new CustomerDatabase(customersHandler.LoadCustomers());
-
             Menu menu = new Menu();
             menu.MainMenu(warehouse, customerdb);
 
@@ -103,5 +102,3 @@
     }
 }
 
-//RETTELSER:
-// - Den gik i endless loop hvis du ville slette et spil fra en gamegroup der ikke er spil i. - ÅBEN
