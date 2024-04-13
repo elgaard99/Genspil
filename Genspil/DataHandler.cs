@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -93,6 +95,23 @@ namespace Genspil
             {
 
                 string[] customerInfo = line.Split(",");
+                Request[] requests = new Request[100];
+                string[] _requests;
+
+                
+                try
+                {
+                    _requests = customerInfo[5].Substring(1, customerInfo[5].Length - 2).Split(";");
+                }
+                catch (IndexOutOfRangeException)
+                {
+                        _requests = [];
+                }
+
+                for (int i = 0; i < _requests.Length; i++)
+                {
+                    requests[i] = new Request(_requests[i]);
+                }
 
                 customers.Add(
                     new Customer(
@@ -100,12 +119,15 @@ namespace Genspil
                         customerInfo[1],
                         int.Parse(customerInfo[2]),
                         customerInfo[3],
-                        int.Parse(customerInfo[4])
+                        int.Parse(customerInfo[4]),
+                        requests
                         ));
-            }
-
+                }
             return customers;
 
         }
     }
 }
+//Daniel, Scharla,0,,1,{UNO; sorte per; Æsel; Uno}
+//Henrik, Andersen,67767676, henrik@gmail.com,2,{Matador; Æsel}
+//Sander, Andersen,32323232, sander@gmail.com,3,{}

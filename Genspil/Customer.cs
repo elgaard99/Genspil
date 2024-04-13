@@ -20,37 +20,32 @@ namespace Genspil
         //Demme er vel ikke færdig?? Har givet mit bud på alle mulige constructore
         public Customer(string firstName)
         {
-            this.firstName = firstName;
-        }
 
-        public Customer(string firstName, string lastName)
-        {
             this.firstName = firstName;
-            this.lastName = lastName;
+            this.lastName = "";
             this.phoneNumber = 0;
             this.email = "";
             this.customerNumber = -1;
 
         }
-        public Customer(string firstName, string lastName, int phoneNumber)
+
+        public Customer(string firstName, string lastName) : this(firstName)
         {
-            this.firstName = firstName;
             this.lastName = lastName;
+        }
+
+        public Customer(string firstName, string lastName, int phoneNumber) : this(firstName, lastName)
+        {
             this.phoneNumber = phoneNumber;
         }
 
-        public Customer(string firstName, string lastName, int phoneNumber, Request[] requests)
+        public Customer(string firstName, string lastName, int phoneNumber, string email) : this(firstName, lastName, phoneNumber) 
         {
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.phoneNumber = phoneNumber;
-            this.requests = requests;
+            this.email = email;
         }
 
-        public Customer(string firstName, string lastName, string email)
+        public Customer(string firstName, string lastName, string email) : this(firstName, lastName)
         {
-            this.firstName = firstName;
-            this.lastName = lastName;
             this.email = email;
         }
 
@@ -59,15 +54,6 @@ namespace Genspil
             this.firstName = firstName;
             this.lastName = lastName;
             this.email = email;
-        }
-
-        public Customer(string firstName, string lastName, int phoneNumber, string email)
-        {
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.phoneNumber = phoneNumber;
-            this.email = email;
-            
         }
 
         public Customer(string firstName, string lastName, int phoneNumber, string email, int customerId) : this(firstName, lastName, phoneNumber, email)
@@ -81,6 +67,17 @@ namespace Genspil
             this.lastName = lastName;
             this.phoneNumber = phoneNumber;
             this.email = email;
+        }
+
+        public Customer(
+            string firstName,
+            string lastName,
+            int phoneNumber,
+            string email,
+            int customerNumber,
+            Request[] requests) : this(firstName, lastName, phoneNumber, email, customerNumber)
+        { 
+            this.requests = requests;
         }
 
         public void MakeRequest()
@@ -134,9 +131,13 @@ namespace Genspil
                             gamegroup.PrintGamegroup();
                         }
                         else Console.WriteLine("Spillet " + requestTitle + " er ikke på lager");
+                    
                     }
+                
                 }
+            
             }
+        
         }
 
         public void EditCustomer()
@@ -218,7 +219,22 @@ namespace Genspil
 
         public override string ToString()
         {
-            return $"{firstName}, {lastName}, {phoneNumber}, {email}, {customerNumber}";
+
+            int noOfRequests = requests.Count(r => r != null);
+            string[] _requests = new string[noOfRequests];
+
+            if (noOfRequests > 0) 
+            {
+                
+                for (int i = 0; i < noOfRequests; i++)
+                {
+                    _requests[i] = string.Join(",", requests[i].titles);
+                }
+
+            }
+
+            return $"{firstName},{lastName},{phoneNumber},{email},{customerNumber},{{{string.Join(";", _requests)}}}";
+
         }
 
     }
