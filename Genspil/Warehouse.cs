@@ -123,13 +123,13 @@ namespace Genspil
 
             bool exit = false;
             string[] categories = new string[1];
-            while (exit = false)
+            int countTitle = 0;
+            while (exit == false)
             {
-                int count = 0;
                 Console.WriteLine("Indtast en kategori for " + title + ", eller tryk 0 for at gå videre");
-                string[] categories1 = new string[count + 1];
-                categories1[count] = Console.ReadLine();
-                if (categories1[count] == "0") exit = true;
+                string[] categories1 = new string[countTitle+1];
+                categories1[countTitle] = Console.ReadLine();
+                if (categories1[countTitle] == "0") exit = true;
                 categories = categories1;
             }
 
@@ -286,7 +286,6 @@ namespace Genspil
             //Tror denne er overkill fordi den jo i virkeligheden bare kan være en if statement :p
             if (Array.BinarySearch(gamegroupsTitle, title) < 0)
             {
-                string NoResult = "";
                 Console.WriteLine("Spillet findes ikke i gamegroup");
                 return null;
             }
@@ -309,10 +308,14 @@ namespace Genspil
                     i++;
                 }
             }
-            if (searchResultsCat != null)
+            if (searchResultsCat.Count(g=>g != null) > 0)
                 return searchResultsCat;
-            else 
+            else
+            {
+                Console.WriteLine("Intet resultat af din søgning");
                 return null;
+            }
+                
         }
         public Gamegroup[]? SearchCategories(string category, Gamegroup[] prevSearchResults)
         {

@@ -95,45 +95,60 @@ namespace Genspil
 
         public void RemoveGame()
         {
-            Console.WriteLine("Hvilket spil ønsker du at slette?");
-
-            foreach (Game game in this.games)
-               if (game != null) Console.WriteLine("\t" + game.ReferenceNumber);
-
-            Console.Write("\n\n(Tryk menupunkt eller 0 for at afslutte) ");
-
-            int idxOfGame = -1;
-            while (true)
+            if (this.games.Count(g=>g != null) > 0)
             {
-                int refNumber;
-                if (!int.TryParse(Console.ReadLine(), out refNumber))
-                    Console.WriteLine("Du skal indtaste et gyldigt fircifret tal.");
-
-                else
+                Console.WriteLine("Hvilket spil ønsker du at slette?");
+                int j = 1; //For at give hvert spil et tal man kan vælge
+                foreach (Game game in this.games)
                 {
-                    for (int i = 0; i < this.games.Length; i++)
+                    if (game != null)
                     {
-                        if (games[i] == null) continue;
-                        int startIndexOfNumber = games[i].ReferenceNumber.IndexOf("-") + 1;
-
-                        if (refNumber == int.Parse(games[i].ReferenceNumber.Substring(startIndexOfNumber, 4))) //gets the count-part of a reference-number
-                        {
-                            idxOfGame = i;
-                            break;
-                        }
-
+                        Console.WriteLine(j + "\t" + game.ReferenceNumber);
+                        j++;
                     }
+                }
 
-                    if (idxOfGame != -1)
-                        break;
+                Console.Write("\n\n(Tryk menupunkt eller 0 for at afslutte) ");
 
-                    else
+                int idxOfGame = -1;
+                while (true)
+                {
+                    int refNumber;
+                    if (!int.TryParse(Console.ReadLine(), out refNumber))
                         Console.WriteLine("Du skal indtaste et gyldigt fircifret tal.");
 
-                }
-            }
+                    else
+                    {
+                        for (int i = 0; i < this.games.Length; i++)
+                        {
+                            if (games[i] == null) continue;
+                            int startIndexOfNumber = games[i].ReferenceNumber.IndexOf("-") + 1;
 
-            games[idxOfGame] = null;
+                            if (refNumber == int.Parse(games[i].ReferenceNumber.Substring(startIndexOfNumber, 4))) //gets the count-part of a reference-number
+                            {
+                                idxOfGame = i;
+                                break;
+                            }
+
+                        }
+
+                        if (idxOfGame != -1)
+                            break;
+
+                        else
+                            Console.WriteLine("Du skal indtaste et gyldigt fircifret tal.");
+
+                    }
+                }
+
+                games[idxOfGame] = null;
+            }
+            else 
+            { 
+                Console.WriteLine("Der er ingen spil at slette! Tryk enter for at gå tilbage tidligere menu");
+                Console.ReadLine();
+            };
+                
 
         }
 

@@ -91,13 +91,8 @@
 
             Warehouse warehouse = new Warehouse(gamegroupsHandler.LoadGamegroups());
             CustomerDatabase customerdb = new CustomerDatabase(customersHandler.LoadCustomers());
-
-            //Menu menu = new Menu();
-            //menu.MainMenu(warehouse, customerdb);
-
-            customerdb.customerDatabase[0].MakeRequest();
-            customerdb.customerDatabase[0].MakeRequest();
-            customerdb.customerDatabase[1].MakeRequest();
+            Menu menu = new Menu();
+            menu.MainMenu(warehouse, customerdb);
 
             gamegroupsHandler.Save(warehouse.gamegroups);
             customersHandler.Save(customerdb.ToArray());
@@ -108,5 +103,3 @@
 
 }
 
-//RETTELSER:
-// - Den gik i endless loop hvis du ville slette et spil fra en gamegroup der ikke er spil i. - ÅBEN
