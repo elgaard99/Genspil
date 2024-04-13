@@ -200,6 +200,7 @@ namespace Genspil
 
                 void SearchAgeRecommend()
                 {
+
                     Console.Write("Miniums alder: ");
                     int.TryParse(Console.ReadLine(), out int min);
 
@@ -210,6 +211,7 @@ namespace Genspil
 
                     Console.Write("\n(Tryk enter for at komme tilbage)");
                     Console.ReadLine();
+
                 }
             }
 

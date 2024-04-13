@@ -84,7 +84,7 @@
             // PrintCustomers() kan gøres pænere...
 
             // I skal indsætte stien til hvor gamegroupData.txt og customerData.txt gemmes
-            Environment.CurrentDirectory = /*"C:\\Visual Studio 2022\\Source\\Repos\\Genspil\\Genspil";*/ "C:\\Users\\dscha\\source\\repos\\Genspil\\Genspil\\";
+            Environment.CurrentDirectory = "C:\\Visual Studio 2022\\Source\\Repos\\Genspil\\Genspil";// "C:\\Users\\dscha\\source\\repos\\Genspil\\Genspil\\";
 
             DataHandler gamegroupsHandler = new DataHandler("gamegroupData.txt");
             DataHandler customersHandler = new DataHandler("customerData.txt");
@@ -92,8 +92,12 @@
             Warehouse warehouse = new Warehouse(gamegroupsHandler.LoadGamegroups());
             CustomerDatabase customerdb = new CustomerDatabase(customersHandler.LoadCustomers());
 
-            Menu menu = new Menu();
-            menu.MainMenu(warehouse, customerdb);
+            //Menu menu = new Menu();
+            //menu.MainMenu(warehouse, customerdb);
+
+            customerdb.customerDatabase[0].MakeRequest();
+            customerdb.customerDatabase[0].MakeRequest();
+            customerdb.customerDatabase[1].MakeRequest();
 
             gamegroupsHandler.Save(warehouse.gamegroups);
             customersHandler.Save(customerdb.ToArray());
@@ -101,6 +105,7 @@
         }
 
     }
+
 }
 
 //RETTELSER:

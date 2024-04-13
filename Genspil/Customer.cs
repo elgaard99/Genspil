@@ -83,6 +83,17 @@ namespace Genspil
             this.email = email;
         }
 
+        public Customer(
+            string firstName,
+            string lastName,
+            int phoneNumber,
+            string email,
+            int customerNumber,
+            Request[] requests) : this(firstName, lastName, phoneNumber, email, customerNumber)
+        { 
+            this.requests = requests;
+        }
+
         public void MakeRequest()
         {
             
@@ -134,9 +145,13 @@ namespace Genspil
                             gamegroup.PrintGamegroup();
                         }
                         else Console.WriteLine("Spillet " + requestTitle + " er ikke på lager");
+                    
                     }
+                
                 }
+            
             }
+        
         }
 
         public void EditCustomer()
@@ -218,7 +233,23 @@ namespace Genspil
 
         public override string ToString()
         {
-            return $"{firstName}, {lastName}, {phoneNumber}, {email}, {customerNumber}";
+
+            int noOfRequests = requests.Count(r => r != null);
+            string[] _requests = new string[noOfRequests];
+
+            if (noOfRequests > 0) 
+            {
+                
+                for (int i = 0; i < noOfRequests; i++)
+                {
+                    _requests[i] = string.Join(",", requests[i].titles);
+                }
+
+            }
+            Console.WriteLine($"{{{ string.Join(";", _requests)}}}");
+
+            return $"{firstName}, {lastName}, {phoneNumber}, {email}, {customerNumber}, {{{string.Join(";", _requests)}}}";
+
         }
 
     }

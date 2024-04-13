@@ -1,3 +1,3 @@
-Daniel,  Scharla, 0,  , 1
-Henrik,  Andersen, 67767676,  henrik@gmail.com, 3
-Sander,  Andersen, 32323232,  sander@gmail.com, 2
+Daniel,   Scharla, 0,     , 1, {uno; sorte per;Æsel;Uno}
+Henrik,   Andersen, 67767676,   henrik@gmail.com, 2, {matador;Æsel}
+Sander,   Andersen, 32323232,   sander@gmail.com, 3, {}
