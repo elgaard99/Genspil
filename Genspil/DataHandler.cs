@@ -105,7 +105,7 @@ namespace Genspil
                 }
                 catch (IndexOutOfRangeException)
                 {
-                        _requests = [];
+                    _requests = [];
                 }
 
                 for (int i = 0; i < _requests.Length; i++)
