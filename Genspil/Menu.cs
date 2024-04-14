@@ -111,6 +111,7 @@ namespace Genspil
 
         void SearchWarehouse(Warehouse warehouse) 
         {
+            Gamegroup[]? results;
             Menu subMenu = new Menu
                 (
                 "Søg efter spil på lageret",
@@ -177,28 +178,57 @@ namespace Genspil
                 
                 }
 
+                void CombineSearchCategori()
+                {
+                    Console.Write("Kategori: ");
+
+                    results = warehouse.SearchCategories(Console.ReadLine(), results);
+
+                    Console.Write("\n(Tryk enter for at komme tilbage)");
+                    Console.ReadLine();
+
+                }
                 void SearchCategori()
                 {
                     Console.Write("Kategori: ");
 
-                    warehouse.SearchCategories(Console.ReadLine());
+                    results = warehouse.SearchCategories(Console.ReadLine());
+                    CombineMenu();
+                    
+                }
+
+                void CombineSearchNumberOfPlayers()
+                {
+                    Console.Write("Antal spillere: ");
+                    int numberOfPlayers = int.Parse(Console.ReadLine());
+                    results = warehouse.SearchNumbPlayers(numberOfPlayers, results);
 
                     Console.Write("\n(Tryk enter for at komme tilbage)");
                     Console.ReadLine();
-
                 }
-
                 void SearchNumberOfPlayers()
                 {
                     Console.Write("Antal spillere: ");
                     int numberOfPlayers = int.Parse(Console.ReadLine());
-                    warehouse.SearchNumbPlayers(numberOfPlayers);
-
-                    Console.Write("\n(Tryk enter for at komme tilbage)");
-                    Console.ReadLine();
+                    results = warehouse.SearchNumbPlayers(numberOfPlayers);
+                    CombineMenu();
                 }
 
                 void SearchAgeRecommend()
+                {
+
+                    Console.Write("Miniums alder: ");
+                    int.TryParse(Console.ReadLine(), out int min);
+
+                    Console.Write("Maks alder: ");
+                    int.TryParse(Console.ReadLine(), out int max);
+
+                    results = warehouse.SearchAgeRecommend(min, max);
+                    CombineMenu();
+
+                }
+
+                void CombineSearchAgeRecommend()
                 {
 
                     Console.Write("Miniums alder: ");
@@ -212,6 +242,50 @@ namespace Genspil
                     Console.Write("\n(Tryk enter for at komme tilbage)");
                     Console.ReadLine();
 
+                }
+
+                void CombineMenu()
+                {
+                    Console.WriteLine("Tryk 0 for at vende tilbage, eller et andet tal for at kombinere søgning");
+                    int combineContinue = Convert.ToInt32(Console.ReadLine());
+                    if (combineContinue == 0) ;
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Vælg hvad du vil kombinere søgningen med, eller tryk 0 for at afslutte og se dine resultater:");
+                        Console.WriteLine("1. Kategori");
+                        Console.WriteLine("2. Antal spillere");
+                        Console.WriteLine("3. Alder");
+                        int combineSearch = Convert.ToInt32(Console.ReadLine());
+                        if (combineSearch == 0)
+                        {
+                            foreach (Gamegroup result in results)
+                            {
+                                if (result != null)
+                                    Console.WriteLine(result.title + " matchede dit søgekriterie");
+                            }
+                            Console.WriteLine("Tryk på enter for at vende tilbage");
+                            Console.ReadLine();
+                        }
+                        if (combineSearch == 1)
+                        {
+                            CombineSearchCategori();
+                        }
+                        else if (combineSearch == 2)
+                        {
+                            CombineSearchNumberOfPlayers();
+                        }
+                        else if (combineSearch == 3)
+                        {
+                            CombineSearchAgeRecommend();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Du skal vælge et tal mellem 0 og 3");
+                            CombineMenu();
+                        }
+
+                    }
                 }
             }
 
@@ -331,6 +405,7 @@ namespace Genspil
             }
 
         }
+
 
     }
 

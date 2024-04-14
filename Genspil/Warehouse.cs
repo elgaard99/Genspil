@@ -324,11 +324,15 @@ namespace Genspil
             int i = 0;
             foreach (Gamegroup group in prevSearchResults)
             {
-                if (Array.BinarySearch(group.categories, category) >= 0)
+                if (group != null)
                 {
-                    searchResultsCat[i] = group;
-                    Console.WriteLine(searchResultsCat[i].title + " matcher kriteret " + category);
-                    i++;
+                    int binarySearchResult = Array.BinarySearch(group.categories, category);
+                    if (binarySearchResult >= 0)
+                    {
+                        searchResultsCat[i] = group;
+                        Console.WriteLine(searchResultsCat[i].title + " matcher kriteret " + category);
+                        i++;
+                    }
                 }
             }
             if (searchResultsCat != null)
@@ -363,7 +367,7 @@ namespace Genspil
             foreach (Gamegroup group in prevSearchResults)
             {
                 //Da array altid er 2 ingen grund til brug af binarysearch???
-                if (group.numbPlayers[0] >= min && group.numbPlayers[1] >= max)
+                if (group != null && group.numbPlayers[0] >= min && group.numbPlayers[1] >= max)
                 {
                     searchResultsNumbPlayers[i] = group;
                     Console.WriteLine(searchResultsNumbPlayers[i].title + " matcher kriteret" + ". Det har rummer " + group.numbPlayers[0] + "-" + group.numbPlayers[1] + " spillere.");
@@ -382,7 +386,7 @@ namespace Genspil
             foreach (Gamegroup group in gamegroups)
             {
                 //Da array altid er 2 ingen grund til brug af binarysearch???
-                if (group.numbPlayers[0] <= min && group.numbPlayers[1] >= min)
+                if (group != null && group.numbPlayers[0] <= min && group.numbPlayers[1] >= min)
                 {
                     searchResultsNumbPlayers[i] = group;
                     Console.WriteLine(searchResultsNumbPlayers[i].title + " matcher kriteret" + ". Det har rummer " + group.numbPlayers[0] + "-" + group.numbPlayers[1] + " spillere.");
@@ -402,7 +406,7 @@ namespace Genspil
             foreach (Gamegroup group in prevSearchResults)
             {
                 //Da array altid er 2 ingen grund til brug af binarysearch???
-                if (group.numbPlayers[0] <= min && group.numbPlayers[1] >= min)
+                if (group != null && group.numbPlayers[0] <= min && group.numbPlayers[1] >= min)
                 {
                     searchResultsNumbPlayers[i] = group;
                     Console.WriteLine(searchResultsNumbPlayers[i].title + " matcher kriteret" + ". Det har rummer " + group.numbPlayers[0] + "-" + group.numbPlayers[1] + " spillere.");
@@ -422,10 +426,10 @@ namespace Genspil
             foreach (Gamegroup group in gamegroups)
             {
                 //Da array altid er 2 ingen grund til brug af binarysearch???
-                if (group.ageRecommended[0] >= min && group.ageRecommended[1] <= max)
+                if (group != null && group.ageRecommended[0] >= min && group.ageRecommended[1] <= max)
                 {
                     searchResultsAgeRecommended[i] = group;
-                    Console.WriteLine(searchResultsAgeRecommended[i].title + " matcher kriteret" + ". Det har rummer " + group.ageRecommended[0] + "-" + group.ageRecommended[1] + " spillere.");
+                    Console.WriteLine(searchResultsAgeRecommended[i].title + " matcher kriteret" + ". Alders anbefalingen er: " + group.ageRecommended[0] + "-" + group.ageRecommended[1] + " år.");
                     i++;
                 }
             }
@@ -442,7 +446,7 @@ namespace Genspil
             foreach (Gamegroup group in prevSearchResults)
             {
                 //Da array altid er 2 ingen grund til brug af binarysearch???
-                if (group.ageRecommended[0] >= min && group.ageRecommended[1] <= max)
+                if (group != null && group.ageRecommended[0] >= min && group.ageRecommended[1] <= max)
                 {
                     searchResultsAgeRecommended[i] = group;
                     Console.WriteLine(searchResultsAgeRecommended[i].title + " matcher kriteret" + ". Det har rummer " + group.ageRecommended[0] + "-" + group.ageRecommended[1] + " spillere.");
