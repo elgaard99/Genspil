@@ -106,11 +106,14 @@ namespace Genspil
                     }
                 }
             }
+
+
         }
 
         //mindre "Bug" i denne, da hvis du kommer til at tilføje en anden request der allerede eksistere printer den igen. Fx hvis der er oprettet 2 x matador, printes det 2 gange
         public void AvailabilityNotice(Warehouse warehouse)
         {
+
             foreach (Request request in requests)
             {
                 if (request != null)
@@ -127,15 +130,13 @@ namespace Genspil
                         if (gamegroup != null && gamegroup.games[0] != null)
                         {
                             Console.WriteLine(gamegroup.title + " er på lager.");
+                            Console.WriteLine("Dette spil er ønsket af kunden:" + firstName + " med kundenummer: " + customerNumber);
                             Console.WriteLine("Der kan vælges mellem følgende spil:");
                             gamegroup.PrintGamegroup();
+                            Console.ReadLine();
                         }
-                        else Console.WriteLine("Spillet " + requestTitle + " er ikke på lager");
-                    
                     }
-                
-                }
-            
+                } 
             }
         
         }
@@ -214,7 +215,6 @@ namespace Genspil
             string titleChoice = requestChoice.titles[titleIndex];
             Console.WriteLine("Indtast efterspørgsel:");
             requestChoice.titles[titleIndex] = Console.ReadLine();
-           
         }
 
         public override string ToString()

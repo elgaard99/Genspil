@@ -286,7 +286,7 @@ namespace Genspil
             //Tror denne er overkill fordi den jo i virkeligheden bare kan være en if statement :p
             if (Array.BinarySearch(gamegroupsTitle, title) < 0)
             {
-                Console.WriteLine("Spillet findes ikke i gamegroup");
+                Console.WriteLine("HOV! Spillet er ikke tilføjet til databasen. Overvej at tilføje " + title + " til databasen");
                 return null;
             }
             //if (gamegroups==title) 

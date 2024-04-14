@@ -71,7 +71,13 @@ namespace Genspil
                 { Console.WriteLine("Du skal vælge et menupunkt mellem 0 og " + menuItems.Length); }
             }
         }
-
+        public void CheckAvailability(Warehouse warehouse, CustomerDatabase customerDatabase)
+        {
+            customerDatabase.customerDatabase.ForEach(delegate (Customer customer)
+            {
+                customer.AvailabilityNotice(warehouse);
+            });
+        }
         public void MainMenu(Warehouse warehouse, CustomerDatabase customerDatabase)
         {
 
@@ -97,10 +103,12 @@ namespace Genspil
 
                     case "Kunder":
                         CustomerMenu(customerDatabase);
+                        CheckAvailability(warehouse, customerDatabase);
                         break;
 
                     case "Rediger Lager":
                         EditWarehouse(warehouse);
+                        CheckAvailability(warehouse, customerDatabase);
                         break;
                 
                 }
