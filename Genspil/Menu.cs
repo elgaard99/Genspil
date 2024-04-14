@@ -121,7 +121,6 @@ namespace Genspil
                     "Søg efter kategori",
                     "Søg efter antal spillere",
                     "Søg efter alder",
-                    "Søg på flere kriterier"
                 }
             );
 
@@ -154,10 +153,6 @@ namespace Genspil
                         SearchAgeRecommend();
                         break;
 
-                    case "Søg på flere kriterier":
-                        //warehouse.Search()
-                        break;
-
                 }
 
                 void SearchTitle()
@@ -184,8 +179,7 @@ namespace Genspil
 
                     results = warehouse.SearchCategories(Console.ReadLine(), results);
 
-                    Console.Write("\n(Tryk enter for at komme tilbage)");
-                    Console.ReadLine();
+                    CombineMenu();
 
                 }
                 void SearchCategori()
@@ -203,8 +197,7 @@ namespace Genspil
                     int numberOfPlayers = int.Parse(Console.ReadLine());
                     results = warehouse.SearchNumbPlayers(numberOfPlayers, results);
 
-                    Console.Write("\n(Tryk enter for at komme tilbage)");
-                    Console.ReadLine();
+                    CombineMenu();
                 }
                 void SearchNumberOfPlayers()
                 {
@@ -237,18 +230,17 @@ namespace Genspil
                     Console.Write("Maks alder: ");
                     int.TryParse(Console.ReadLine(), out int max);
 
-                    warehouse.SearchAgeRecommend(min, max);
+                    warehouse.SearchAgeRecommend(min, max, results);
 
-                    Console.Write("\n(Tryk enter for at komme tilbage)");
-                    Console.ReadLine();
+                    CombineMenu();
 
                 }
 
                 void CombineMenu()
                 {
-                    Console.WriteLine("Tryk 0 for at vende tilbage, eller et andet tal for at kombinere søgning");
+                    Console.WriteLine("Tryk 0 for at vende tilbage til søge-menuen, eller et andet tal for at kombinere søgning");
                     int combineContinue = Convert.ToInt32(Console.ReadLine());
-                    if (combineContinue == 0) ;
+                    if (combineContinue == 0) SearchWarehouse(warehouse);
                     else
                     {
                         Console.Clear();
@@ -264,8 +256,11 @@ namespace Genspil
                                 if (result != null)
                                     Console.WriteLine(result.title + " matchede dit søgekriterie");
                             }
-                            Console.WriteLine("Tryk på enter for at vende tilbage");
+                            Console.WriteLine("Tryk på enter for at vende tilbage til søge-menuen");
                             Console.ReadLine();
+                            SearchWarehouse(warehouse);
+
+
                         }
                         if (combineSearch == 1)
                         {
