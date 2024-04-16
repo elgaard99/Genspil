@@ -67,7 +67,7 @@ namespace Genspil
                     {
 
                         int indexOfGame = int.Parse(referenceNumber.Substring((referenceNumber.Length - 5), 4)); //gets the count-part of a reference-number
-                        games[indexOfGame] = new Game(referenceNumber);
+                        games[indexOfGame -1] = new Game(referenceNumber);
 
                     }
 
